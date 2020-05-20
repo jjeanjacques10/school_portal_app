@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: Text('FIAP Professor', style: TextStyle(color: Colors.pink)),
+          title: Text('Cadastrar Professor', style: TextStyle(color: Colors.pink)),
           centerTitle: true,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -35,6 +35,21 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Center(
                   child: Column(
                 children: <Widget>[
+                    TextFormField(
+                    decoration: new InputDecoration(
+                      icon: const Icon(Icons.person_pin),
+                      fillColor: Colors.black,
+                      hintText: 'Digite seu nome',
+                      labelText: 'Nome',
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Digite o Nome';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {},
+                  ),
                   TextFormField(
                     decoration: new InputDecoration(
                       icon: const Icon(Icons.person_pin),
@@ -44,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
-                        return 'Digite o RM para logar';
+                        return 'Digite o RM';
                       }
                       return null;
                     },
@@ -60,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
-                        return 'Digite a senha para logar';
+                        return 'Digite a senha';
                       }
                       return null;
                     },
