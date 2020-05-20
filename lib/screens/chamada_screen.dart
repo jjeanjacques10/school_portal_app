@@ -10,8 +10,11 @@ class ChamadaScreen extends StatefulWidget {
 class _ChamadaScreenState extends State<ChamadaScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: MaterialApp(),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(),
+        body: Text('data'),
+      ),
     );
   }
 }

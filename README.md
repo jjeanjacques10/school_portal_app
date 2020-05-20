@@ -15,11 +15,6 @@ This project was developed with the following technologies:
 - [Dart](https://dart.dev/)
 - [Flutter](https://flutter.dev/)
 
-### 🧾 Clone
-Clone the repository on your machine
-
-```git clone https://github.com/jjeanjacques10/school_portal_app```
-
 ## :clipboard: Issues
 ### v0.1 
 - [ ] Prototipação
@@ -35,6 +30,11 @@ Clone the repository on your machine
 <br>
 
 ## Get Started
+
+### 🧾 Clone
+Clone the repository on your machine
+
+```git clone https://github.com/jjeanjacques10/school_portal_app```
 
 ### Remove errors from packages
 ```flutter pub get```
