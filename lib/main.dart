@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:school_portal_app/screens/home_screen.dart';
 import 'package:school_portal_app/screens/login_screen.dart';
 import 'package:school_portal_app/screens/menu_screen.dart';
+import 'package:school_portal_app/screens/professor/editar_professor.dart';
 import 'package:school_portal_app/screens/professor/novo_professor.dart';
 import 'package:school_portal_app/screens/tarefas_screen.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
           '/home': (context) => HomeScreen(),
           '/tarefas': (context) => TarefasScreen(),
           '/novo-professor': (context) => NovoProfessorScreen(),
+          '/editar-profesor': (context) => EditarProfessorScreen(),
         },
       ),
     );

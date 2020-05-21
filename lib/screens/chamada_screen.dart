@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/components/item_card.dart';
 
 class ChamadaScreen extends StatefulWidget {
   ChamadaScreen({Key key}) : super(key: key);
@@ -44,104 +45,12 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
                   ),
                 ],
               ),
-              Card(
-                elevation: 12.0,
-                margin: new EdgeInsets.symmetric(
-                  horizontal: 12.0,
-                  vertical: 6.0,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.pink,
-                  ),
-                  child: ListTile(
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-                    title: Text(
-                      "Desenvolvimento Cross Platform",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    subtitle: Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 3,
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 0),
-                            child: Text(
-                              "3SIA | 10h00 | 504 un. 2",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    trailing: Icon(
-                      Icons.keyboard_arrow_right,
-                      color: Colors.white,
-                      size: 30.0,
-                    ),
-                    onTap: () {
-                      //navegarTelaCursoDetalhes(context, curso);
-                    },
-                  ),
-                ),
-              ),
-              Card(
-                elevation: 12.0,
-                margin: new EdgeInsets.symmetric(
-                  horizontal: 12.0,
-                  vertical: 6.0,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.pink,
-                  ),
-                  child: ListTile(
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-                    title: Text(
-                      "Desenvolvimento Cross Platform",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    subtitle: Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 3,
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 0),
-                            child: Text(
-                              "3SIR | 19h00 | 302 un. 2",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    trailing: Icon(
-                      Icons.keyboard_arrow_right,
-                      color: Colors.white,
-                      size: 30.0,
-                    ),
-                    onTap: () {
-                      //navegarTelaCursoDetalhes(context, curso);
-                    },
-                  ),
-                ),
-              ),
+              ItemCard('Desenvolvimento Cross Platform', '3SIA', '11:40',
+                  '304 un. 2'),
+              ItemCard('Desenvolvimento Mobile, Games e iOT', '3SIB', '01:40',
+                  '301 un. 2'),
+              ItemCard('Microservice And Web Engineering', '2SIA', '19:00',
+                  '334 un. 2'),
               SizedBox(height: 24),
               FutureBuilder<List>(
                 builder: (context, snapshot) {
