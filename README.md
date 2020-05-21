@@ -55,6 +55,3 @@ this command or select **Run and Debug**
 ---
 
 Developed by [Jean Jacques](https://github.com/jjeanjacques10) 
-
-
-

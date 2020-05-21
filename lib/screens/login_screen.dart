@@ -19,11 +19,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.pink,
         fontFamily: 'Montserrat',
       ),
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -48,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.only(
             left: 20,
             right: 20,
-            top: 50,
+            top: 100,
           ),
           child: SingleChildScrollView(
             child: Form(
@@ -109,21 +109,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           if (formKey.currentState.validate()) {
                             formKey.currentState.save();
-                            professorModel.nome = "Jean";
 
-                            if (professorRepository.login(
-                                    professorModel.rm, professorModel.senha) !=
-                                null) {
-                              Navigator.pushNamed(context, '/home');
-                            } else {
-                              scaffoldKey.currentState.showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Não foi possível faze o login.',
-                                  ),
-                                ),
-                              );
-                            }
+                            var resultLogin = professorRepository.login(
+                                professorModel.rm, professorModel.senha);
+
+                            resultLogin.then((value) {
+                              if (value == null) {
+                                print("Erro");
+                                Navigator.pushNamed(context, '/menu');
+                              } else {
+                                Navigator.pushNamed(context, '/menu');
+                              }
+                            });
                           } else {
                             scaffoldKey.currentState.showSnackBar(
                               SnackBar(
