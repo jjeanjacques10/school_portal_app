@@ -11,33 +11,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.grey[50],
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: Text(
-            'FIAPP',
-            style: TextStyle(color: Colors.pink),
-          ),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              icon: Icon(
-                Icons.more_vert,
-                color: Colors.pink,
-              ),
-              onPressed: () {},
-            ),
-          ],
-        ),
         body: Padding(
-          padding: const EdgeInsets.only(top:0),
+          padding: const EdgeInsets.only(top: 0),
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
                 child: Text(
-                  'Olá, Flavio!',
+                  'Olá, Flávio Moreni',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       color: Colors.pink,
@@ -48,7 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     child: Text(
                       "Aulas do dia:",
                       textAlign: TextAlign.left,
@@ -143,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                     trailing: Icon(
@@ -177,36 +162,6 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             ],
           ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.pink,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text(
-                'Início',
-                style: TextStyle(fontWeight: FontWeight.w600),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.assignment_ind),
-              title: Text(
-                'Chamada',
-                style: TextStyle(fontWeight: FontWeight.w600),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.library_books),
-              title: Text(
-                'Tarefas',
-                style: TextStyle(fontWeight: FontWeight.w600),
-              ),
-            ),
-          ],
-          currentIndex: 0,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.pink[900],
-          onTap: null,
         ),
       ),
     );

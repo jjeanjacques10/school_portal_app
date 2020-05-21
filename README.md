@@ -52,9 +52,6 @@ this command or select **Run and Debug**
 - Gabriel Petillo
 - Vitor Rico
 
-## Getting Started
+---
 
 Developed by [Jean Jacques](https://github.com/jjeanjacques10) 
-
-
-
