@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/models/professor_model.dart';
 import 'package:school_portal_app/screens/chamada_screen.dart';
 import 'package:school_portal_app/screens/home_screen.dart';
 import 'package:school_portal_app/screens/tarefas_screen.dart';
@@ -11,6 +12,9 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
+  ProfessorModel professorModel;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
   // Menu superior
   Choice _selectedChoice = choices[0];
 
@@ -36,6 +40,8 @@ class _MenuScreenState extends State<MenuScreen> {
 
   @override
   Widget build(BuildContext context) {
+    professorModel = ModalRoute.of(context).settings.arguments;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -116,7 +122,7 @@ class Choice {
 
 const List<Choice> choices = const <Choice>[
   const Choice(title: 'Notificações', icon: Icons.mail),
-  const Choice(title: 'Editar Perfil', icon: Icons.edit),
+  const Choice(title: 'Editar Perfil', icon: Icons.edit,),
   const Choice(title: 'Configurações', icon: Icons.settings),
   const Choice(title: 'Avaliar App', icon: Icons.thumb_up),
   const Choice(title: 'Reportar Erro', icon: Icons.textsms),
