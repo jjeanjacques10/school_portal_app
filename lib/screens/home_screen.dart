@@ -12,50 +12,203 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          backgroundColor: Colors.grey[50],
-          appBar: AppBar(
-            backgroundColor: Colors.black,
-            title: Text('Home Page', style: TextStyle(color: Colors.pink)),
-            centerTitle: true,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
+        backgroundColor: Colors.grey[50],
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: Text(
+            'FIAPP',
+            style: TextStyle(color: Colors.pink),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                Text(
-                  'Olá, {Professor}!',
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.more_vert,
+                color: Colors.pink,
+              ),
+              onPressed: () {},
+            ),
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.only(top:0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
+                child: Text(
+                  'Olá, Flavio!',
+                  textAlign: TextAlign.left,
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
+                      color: Colors.pink,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    child: Text(
+                      "Aulas do dia:",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Card(
+                elevation: 12.0,
+                margin: new EdgeInsets.symmetric(
+                  horizontal: 12.0,
+                  vertical: 6.0,
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.pink,
+                  ),
+                  child: ListTile(
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                    title: Text(
+                      "Desenvolvimento Cross Platform",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    subtitle: Row(
+                      children: <Widget>[
+                        Expanded(
+                          flex: 3,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 0),
+                            child: Text(
+                              "3SIA | 10h00 | 504 un. 2",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: Colors.white,
+                      size: 30.0,
+                    ),
+                    onTap: () {
+                      //navegarTelaCursoDetalhes(context, curso);
+                    },
                   ),
                 ),
-                SizedBox(height: 24),
-                FutureBuilder<List>(
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      if (snapshot.data.length > 0) {
-                        return Text(snapshot.data.toString());
-                      } else {
-                        return Center(
-                          child: Text("Nenhum curso cadastrado!"),
-                        );
-                      }
+              ),
+              Card(
+                elevation: 12.0,
+                margin: new EdgeInsets.symmetric(
+                  horizontal: 12.0,
+                  vertical: 6.0,
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.pink,
+                  ),
+                  child: ListTile(
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                    title: Text(
+                      "Desenvolvimento Cross Platform",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    subtitle: Row(
+                      children: <Widget>[
+                        Expanded(
+                          flex: 3,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 0),
+                            child: Text(
+                              "3SIR | 19h00 | 302 un. 2",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: Colors.white,
+                      size: 30.0,
+                    ),
+                    onTap: () {
+                      //navegarTelaCursoDetalhes(context, curso);
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(height: 24),
+              FutureBuilder<List>(
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.data.length > 0) {
+                      return Text(snapshot.data.toString());
                     } else {
                       return Center(
-                        child: CircularProgressIndicator(),
+                        child: Text("Nenhum curso cadastrado!"),
                       );
                     }
-                  },
-                )
-              ],
+                  } else {
+                    return Center(
+                        // child: CircularProgressIndicator(),
+                        );
+                  }
+                },
+              )
+            ],
+          ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.pink,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text(
+                'Início',
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
             ),
-          )),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.assignment_ind),
+              title: Text(
+                'Chamada',
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.library_books),
+              title: Text(
+                'Tarefas',
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+            ),
+          ],
+          currentIndex: 0,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.pink[900],
+          onTap: null,
+        ),
+      ),
     );
   }
 }
