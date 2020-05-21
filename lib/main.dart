@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'FIAP - Professor',
       theme: ThemeData(
         primarySwatch: Colors.pink,
+        fontFamily: 'Montserrat',
       ),
       home: MaterialApp(
         initialRoute: '/login',
