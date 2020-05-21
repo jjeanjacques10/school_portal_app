@@ -17,25 +17,44 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.black,
           title: Text(
             'FIAPP',
-            style: TextStyle(color: Colors.pink),
+            style: TextStyle(
+              color: Colors.pink,
+              fontWeight: FontWeight.w300
+            ),
           ),
           centerTitle: true,
           actions: [
-            IconButton(
-              icon: Icon(
-                Icons.more_vert,
-                color: Colors.pink,
-              ),
-              onPressed: () {},
+            PopupMenuButton<Choice>(
+              onSelected: _select,
+              itemBuilder: (BuildContext context) {
+                return choices.map((Choice choice) {
+                  return PopupMenuItem<Choice>(
+                    value: choice,
+                    child: Row(
+                      children: [
+                        Icon(
+                          choice.icon,
+                          color: Colors.pink,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(choice.title),
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList();
+              },
             ),
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.only(top:0),
+          padding: const EdgeInsets.only(top: 0),
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
                 child: Text(
                   'Olá, Flavio!',
                   textAlign: TextAlign.left,
@@ -48,7 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     child: Text(
                       "Aulas do dia:",
                       textAlign: TextAlign.left,
@@ -211,4 +231,28 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  Choice _selectedChoice = choices[0]; // The app's "state".
+
+  void _select(Choice choice) {
+    // Causes the app to rebuild with the new _selectedChoice.
+    setState(() {
+      _selectedChoice = choice;
+    });
+  }
 }
+
+class Choice {
+  const Choice({this.title, this.icon});
+  final String title;
+  final IconData icon;
+}
+
+const List<Choice> choices = const <Choice>[
+  const Choice(title: 'Notificações', icon: Icons.mail),
+  const Choice(title: 'Editar Perfil', icon: Icons.edit),
+  const Choice(title: 'Configurações', icon: Icons.settings),
+  const Choice(title: 'Avaliar App', icon: Icons.thumb_up),
+  const Choice(title: 'Reportar Erro', icon: Icons.textsms),
+  const Choice(title: 'Sair', icon: Icons.exit_to_app),
+];
