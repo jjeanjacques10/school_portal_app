@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:school_portal_app/screens/home_screen.dart';
 import 'package:school_portal_app/screens/login_screen.dart';
+import 'package:school_portal_app/screens/tarefas_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/login': (context) => LoginScreen(),
           '/home': (context) => HomeScreen(),
+          '/tarefas': (context) => TarefasScreen(),
         },
       ),
     );
