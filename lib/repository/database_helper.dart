@@ -13,10 +13,8 @@ class DatabaseHelper {
     return _instance;
   }
 
-  // Construtor nomeado 
+  // Construtor nomeado
   DatabaseHelper._internal();
-
-  
 
   // Abre conexão com o banco
   Future<Database> get connection async {
@@ -43,13 +41,10 @@ class DatabaseHelper {
     // Criando a tabela de Cursos
     await database.execute(
       '''
-      CREATE TABLE CursoModel (
-        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+      CREATE TABLE ProfessorModel(
+        rm TEXT PRIMARY KEY NOT NULL,
         nome TEXT,
-        nivel TEXT,
-        percentualConclusao REAL,
-        preco INTEGER,
-        conteudo TEXT
+        senha TEXT NOT NULL
       )
       ''',
     );

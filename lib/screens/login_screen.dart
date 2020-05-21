@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/models/professor_model.dart';
+import 'package:school_portal_app/repository/professor_repository.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key}) : super(key: key);
@@ -11,14 +13,17 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
+  ProfessorRepository professorRepository = ProfessorRepository();
+  ProfessorModel professorModel = ProfessorModel();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.pink,
         fontFamily: 'Montserrat',
       ),
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -43,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.only(
             left: 20,
             right: 20,
-            top: 50,
+            top: 100,
           ),
           child: SingleChildScrollView(
             child: Form(
@@ -71,7 +76,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                         return null;
                       },
-                      onSaved: (value) {},
+                      onSaved: (value) {
+                        professorModel.rm = value;
+                      },
                     ),
                     TextFormField(
                       obscureText: true,
@@ -87,7 +94,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                         return null;
                       },
-                      onSaved: (value) {},
+                      onSaved: (value) {
+                        professorModel.senha = value;
+                      },
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
@@ -101,7 +110,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (formKey.currentState.validate()) {
                             formKey.currentState.save();
 
-                            Navigator.pushNamed(context, '/home');
+                            var resultLogin = professorRepository.login(
+                                professorModel.rm, professorModel.senha);
+
+                            resultLogin.then((value) {
+                              if (value == null) {
+                                print("Erro");
+                                Navigator.pushNamed(context, '/menu');
+                              } else {
+                                Navigator.pushNamed(context, '/menu');
+                              }
+                            });
                           } else {
                             scaffoldKey.currentState.showSnackBar(
                               SnackBar(

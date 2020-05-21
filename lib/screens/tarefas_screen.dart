@@ -1,54 +1,16 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key}) : super(key: key);
-
+class TarefasScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _TarefasScreenState createState() => _TarefasScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _TarefasScreenState extends State<TarefasScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.grey[50],
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: Text(
-            'FIAPP',
-            style: TextStyle(
-              color: Colors.pink,
-              fontWeight: FontWeight.w300
-            ),
-          ),
-          centerTitle: true,
-          actions: [
-            PopupMenuButton<Choice>(
-              onSelected: _select,
-              itemBuilder: (BuildContext context) {
-                return choices.map((Choice choice) {
-                  return PopupMenuItem<Choice>(
-                    value: choice,
-                    child: Row(
-                      children: [
-                        Icon(
-                          choice.icon,
-                          color: Colors.pink,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Text(choice.title),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList();
-              },
-            ),
-          ],
-        ),
         body: Padding(
           padding: const EdgeInsets.only(top: 0),
           child: Column(
@@ -57,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
                 child: Text(
-                  'Olá, Flávio Moreni',
+                  'Tarefas',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       color: Colors.pink,
@@ -202,28 +164,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  Choice _selectedChoice = choices[0]; // The app's "state".
-
-  void _select(Choice choice) {
-    // Causes the app to rebuild with the new _selectedChoice.
-    setState(() {
-      _selectedChoice = choice;
-    });
-  }
 }
-
-class Choice {
-  const Choice({this.title, this.icon});
-  final String title;
-  final IconData icon;
-}
-
-const List<Choice> choices = const <Choice>[
-  const Choice(title: 'Notificações', icon: Icons.mail),
-  const Choice(title: 'Editar Perfil', icon: Icons.edit),
-  const Choice(title: 'Configurações', icon: Icons.settings),
-  const Choice(title: 'Avaliar App', icon: Icons.thumb_up),
-  const Choice(title: 'Reportar Erro', icon: Icons.textsms),
-  const Choice(title: 'Sair', icon: Icons.exit_to_app),
-];

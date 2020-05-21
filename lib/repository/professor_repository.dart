@@ -34,12 +34,22 @@ class ProfessorRepository {
     var connection = await _databaseHelper.connection;
     var sqlCommand =
         "SELECT * FROM ProfessorModel WHERE rm = $rm and senha = $senha  ";
-
+    
     var results = await connection.rawQuery(sqlCommand);
     if (results.length > 0) {
       return new ProfessorModel.fromMap(results.first);
     } else {
       return null;
     }
+  }
+
+  Future<int> create(ProfessorModel professorModel) async {
+    var connection = await _databaseHelper.connection;
+
+    var result = await connection.insert(
+      "ProfessorModel",
+      professorModel.toMap(),
+    );
+    return result;
   }
 }
