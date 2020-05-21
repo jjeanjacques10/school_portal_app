@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/models/professor_model.dart';
+import 'package:school_portal_app/repository/professor_repository.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key}) : super(key: key);
@@ -10,6 +12,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  ProfessorRepository professorRepository = ProfessorRepository();
+  ProfessorModel professorModel = ProfessorModel();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +35,10 @@ class _LoginScreenState extends State<LoginScreen> {
               )),
           centerTitle: true,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.pink,
+            ),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -68,7 +76,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                         return null;
                       },
-                      onSaved: (value) {},
+                      onSaved: (value) {
+                        professorModel.rm = value;
+                      },
                     ),
                     TextFormField(
                       obscureText: true,
@@ -84,7 +94,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                         return null;
                       },
-                      onSaved: (value) {},
+                      onSaved: (value) {
+                        professorModel.senha = value;
+                      },
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
@@ -97,8 +109,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           if (formKey.currentState.validate()) {
                             formKey.currentState.save();
+                            professorModel.nome = "Jean";
 
-                            Navigator.pushNamed(context, '/home');
+                            if (professorRepository.login(
+                                    professorModel.rm, professorModel.senha) !=
+                                null) {
+                              Navigator.pushNamed(context, '/home');
+                            } else {
+                              scaffoldKey.currentState.showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Não foi possível faze o login.',
+                                  ),
+                                ),
+                              );
+                            }
                           } else {
                             scaffoldKey.currentState.showSnackBar(
                               SnackBar(
