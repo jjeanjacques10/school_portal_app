@@ -30,7 +30,10 @@ class _LoginScreenState extends State<LoginScreen> {
               )),
           centerTitle: true,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.pink,
+            ),
             onPressed: () {
               Navigator.pop(context);
             },
