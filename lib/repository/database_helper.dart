@@ -1,4 +1,7 @@
+import 'package:school_portal_app/models/aluno_model.dart';
+import 'package:school_portal_app/models/chamada_model.dart';
 import 'package:school_portal_app/models/professor_model.dart';
+import 'package:school_portal_app/models/turma_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -50,10 +53,9 @@ class DatabaseHelper {
       );
 
       CREATE TABLE TurmaModel(
-        id INTERGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT NOT NULL,
         ano TEXT NOT NULL,
-        disciplina TEXT,
         horario TEXT,
         inicio TEXT,
         termino TEXT
@@ -67,23 +69,24 @@ class DatabaseHelper {
         FOREIGN KEY(idTurma) REFERENCES turmaModel(id)
       );
 
+      CREATE TABLE DisciplinaTurma(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        idDisciplina INTEGER,
+        idTurma INTEGER,
+        FOREIGN KEY(idDisciplina) REFERENCES DisciplinaModel(id),
+        FOREIGN KEY(idTurma) REFERENCES DisciplinaModel(id)
+      );
 
       CREATE TABLE DisciplinaModel (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT,
-        nivel TEXT,
-        percentualConclusao REAL,
-        preco INTEGER,
-        conteudo TEXT,
-        idTurma INTEGER,
         rmProfessor TEXT,
-        FOREIGN KEY(idTurma) REFERENCES TurmaModel(id),
         FOREIGN KEY(rmProfessor) REFERENCES ProfessorModel(rm)
       );
 
 
      CREATE TABLE AtividadeModel(
-        id INTERGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         nota TEXT,
         tipo TEXT,
         dataEntrega TEXT,
@@ -92,7 +95,7 @@ class DatabaseHelper {
       );
 
       CREATE TABLE AtividadeAluno(
-        id INTERGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         rmAluno TEXT,
         idAtividade INTEGER,
         FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
@@ -100,7 +103,7 @@ class DatabaseHelper {
       );
 
       CREATE TABLE ChamadaModel(
-        id INTERGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         presente INTEGER DEFAULT 0,
         data TEXT,
         rmAluno TEXT,
@@ -113,6 +116,14 @@ class DatabaseHelper {
     );
     await database.insert("ProfessorModel",
         new ProfessorModel(rm: "123", nome: "123", senha: "123").toMap());
+
+    await database.insert("TurmaModel", 
+        new TurmaModel(id:11 ,nome:'Flutter', ano: '3SI', disciplina: 'flutter', horario: 'manha', inicio: '0800', termino: '1145').toMap());
+
+    await database.insert("AlunoModel", 
+        new AlunoModel(rm: 85132, nome: "Jean", foto:"foto.png").toMap());
+
+ 
         
   }
 }
