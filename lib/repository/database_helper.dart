@@ -50,7 +50,7 @@ class DatabaseHelper {
       );
 
       CREATE TABLE TurmaModel(
-        id INTERGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT NOT NULL,
         ano TEXT NOT NULL,
         disciplina TEXT,
@@ -83,7 +83,7 @@ class DatabaseHelper {
 
 
      CREATE TABLE AtividadeModel(
-        id INTERGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         nota TEXT,
         tipo TEXT,
         dataEntrega TEXT,
@@ -92,7 +92,7 @@ class DatabaseHelper {
       );
 
       CREATE TABLE AtividadeAluno(
-        id INTERGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         rmAluno TEXT,
         idAtividade INTEGER,
         FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
@@ -100,7 +100,7 @@ class DatabaseHelper {
       );
 
       CREATE TABLE ChamadaModel(
-        id INTERGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         presente INTEGER DEFAULT 0,
         data TEXT,
         rmAluno TEXT,
