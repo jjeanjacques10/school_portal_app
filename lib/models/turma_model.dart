@@ -2,13 +2,13 @@ import 'dart:convert';
 import 'aluno_model.dart';
 
 class TurmaModel {
-  int rm;
+  int id;
   String nome;
   DateTime ano;
   List<AlunoModel>alunos;
 
   TurmaModel({
-    this.rm,
+    this.id,
     this.nome,
     this.ano,
     this.alunos,
@@ -20,14 +20,14 @@ class TurmaModel {
   String toJson() => json.encode(toMap());
 
   factory TurmaModel.fromMap(Map<String, dynamic> json) => TurmaModel(
-        rm: json["rm"],
+        id: json["id"],
         nome: json["nome"],
         ano: json["ano"],
         alunos: json["alunos"],
       );
 
   Map<String, dynamic> toMap() => {
-        "rm": rm,
+        "id": id,
         "nome": nome,
         "ano": ano,
         "alunos":alunos,
