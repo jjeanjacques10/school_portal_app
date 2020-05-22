@@ -6,14 +6,10 @@ class TurmaCard extends StatelessWidget {
   final String horario;
   final String inicio;
   final String termino;
+  final String rota;
 
-  const TurmaCard(
-    this.nome,
-    this.disciplina,
-    this.horario,
-    this.inicio,
-    this.termino,
-  );
+  const TurmaCard(this.nome, this.disciplina, this.horario, this.inicio,
+      this.termino, this.rota);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +57,10 @@ class TurmaCard extends StatelessWidget {
             size: 30.0,
           ),
           onTap: () {
-            //navegarTelaCursoDetalhes(context, curso);
+            Navigator.pushNamed(
+              context,
+              rota,
+            );
           },
         ),
       ),

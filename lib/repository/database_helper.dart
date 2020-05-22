@@ -1,3 +1,4 @@
+import 'package:school_portal_app/models/professor_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -13,10 +14,8 @@ class DatabaseHelper {
     return _instance;
   }
 
-  // Construtor nomeado 
+  // Construtor nomeado
   DatabaseHelper._internal();
-
-  
 
   // Abre conexão com o banco
   Future<Database> get connection async {
@@ -32,7 +31,7 @@ class DatabaseHelper {
 
     var database = await openDatabase(
       dbPath,
-      version: 1,
+      version: 4,
       onCreate: _createTables,
     );
 
@@ -41,63 +40,79 @@ class DatabaseHelper {
 
   void _createTables(Database database, int version) async {
     // Criando a tabela de Cursos
+
     await database.execute(
       '''
+    CREATE TABLE  ProfessorModel(
+        rm TEXT PRIMARY KEY ,
+        nome TEXT,
+        senha TEXT NOT NULL
+      );
+
+      CREATE TABLE TurmaModel(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL,
+        ano TEXT NOT NULL,
+        disciplina TEXT,
+        horario TEXT,
+        inicio TEXT,
+        termino TEXT
+      );
+      
       CREATE TABLE AlunoModel(
-        rm INTERGER PRIMARY KEY NOT NULL,
+        rm TEXT PRIMARY KEY ,
         nome TEXT,
         foto TEXT,
-        alunoTurma INTEGER,
-        FOREIGN KEY(alunoTurma) REFERENCES turmaModel(rm)
-      )
+        idTurma INTEGER,
+        FOREIGN KEY(idTurma) REFERENCES turmaModel(id)
+      );
 
-      CREATE TABLE AtividadeModel(
-        id INTERGER PRIMARY KEY NOT NULL,
-        nota TEXT,
-        tipo TEXT,
-        dataEntrega TEXT,
-        atividadeAluno INTEGER,
-        FOREIGN KEY(atividadeAluno) REFERENCES alunoModel(rm)
-      )
 
-      CREATE TABLE ChamadaModel(
-        id INTERGER PRIMARY KEY NOT NULL,
-        presente TEXT,
-        data TEXT,
-        chamadaAluno INTEGER,
-        FOREIGN KEY(chamadaAluno) REFERENCES alunoModel(rm),
-        chamadaCurso INTEGER,
-        FOREIGN KEY(chamadaCurso) REFERENCES cursoModel(id)
-      )
-
-      CREATE TABLE CursoModel (
-        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+      CREATE TABLE DisciplinaModel (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT,
         nivel TEXT,
         percentualConclusao REAL,
         preco INTEGER,
         conteudo TEXT,
-        cursoTurma INTEGER,
-        FOREIGN KEY(cursoTurma) REFERENCES turmaModel(rm),
-        cursoProfessor INTEGER,
-        FOREIGN KEY(atividadeAluno) REFERENCES alunoModel(rm)
-      )
+        idTurma INTEGER,
+        rmProfessor TEXT,
+        FOREIGN KEY(idTurma) REFERENCES TurmaModel(id),
+        FOREIGN KEY(rmProfessor) REFERENCES ProfessorModel(rm)
+      );
 
-       CREATE TABLE  ProfessorModel(
-        rm INTERGER PRIMARY KEY NOT NULL,
-        nome TEXT,
-        senha TEXT
-      )
 
-      CREATE TABLE turmaModel(
-        rm INTERGER PRIMARY KEY NOT NULL,
-        nome TEXT,
-        ano TEXT
-        turmaAluno INTEGER,
-        FOREIGN KEY(turmaAluno) REFERENCES alunoModel(rm)
+     CREATE TABLE AtividadeModel(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nota TEXT,
+        tipo TEXT,
+        dataEntrega TEXT,
+        idCurso INTEGER,
+        FOREIGN KEY(idCurso) REFERENCES DisciplinaModel(id)
+      );
 
-      )
+      CREATE TABLE AtividadeAluno(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        rmAluno TEXT,
+        idAtividade INTEGER,
+        FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
+        FOREIGN KEY(idAtividade) REFERENCES AtividadeModel(id)
+      );
+
+      CREATE TABLE ChamadaModel(
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        presente INTEGER DEFAULT 0,
+        data TEXT,
+        rmAluno TEXT,
+        idDisciplina INTEGER,
+        FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
+        FOREIGN KEY(idDisciplina) REFERENCES DisciplinaModel(id)
+      );
+     
       ''',
     );
+    await database.insert("ProfessorModel",
+        new ProfessorModel(rm: "123", nome: "123", senha: "123").toMap());
+        
   }
 }
