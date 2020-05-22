@@ -115,15 +115,30 @@ class DatabaseHelper {
       ''',
     );
     await database.insert("ProfessorModel",
-        new ProfessorModel(rm: "123", nome: "123", senha: "123").toMap());
+        new ProfessorModel(rm: "123", nome: "Flavio", senha: "123").toMap());
 
-    await database.insert("TurmaModel", 
-        new TurmaModel(id:11 ,nome:'Flutter', ano: '3SI', disciplina: 'flutter', horario: 'manha', inicio: '0800', termino: '1145').toMap());
+    await database.insert("TurmaModel",
+        new TurmaModel(id: 11, nome: 'Flutter',ano: '3SIA', horario: 'manha', inicio: '0800',termino: '1145').toMap());
 
-    await database.insert("AlunoModel", 
-        new AlunoModel(rm: 85132, nome: "Jean", foto:"foto.png").toMap());
+    await database.insert("TurmaModel",
+        new TurmaModel(id: 11,nome: 'Flutter',ano: '3SIB',horario: 'manha',inicio: '0800',termino: '1145').toMap());
 
- 
-        
+    await database.insert("AlunoModel",
+        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+
+    await database.insert("DisciplinaTurma",
+        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+
+    await database.insert("DisciplinaModel",
+        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+
+    await database.insert("AtividadeModel",
+        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+
+    await database.insert("AtividadeAluno",
+        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+
+    await database.insert("ChamadaModel",
+        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
   }
 }

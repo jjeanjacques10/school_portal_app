@@ -5,7 +5,6 @@ class TurmaModel {
   int id;
   String nome;
   String ano;
-  String disciplina;
   String horario;
   String inicio;
   String termino;
@@ -15,7 +14,6 @@ class TurmaModel {
     this.id,
     this.nome,
     this.ano,
-    this.disciplina,
     this.horario,
     this.inicio,
     this.termino
@@ -30,7 +28,6 @@ class TurmaModel {
         id: json["id"],
         nome: json["nome"],
         ano: json["ano"],
-        disciplina: json["disciplina"],
         horario: json["horario"],
         inicio: json["inicio"],
         termino: json["termino"],
@@ -40,7 +37,6 @@ class TurmaModel {
         "id": id,
         "nome": nome,
         "ano": ano,
-        "disciplina":disciplina,
         "horario":horario,
         "inicio":inicio,
         "termino":termino,
