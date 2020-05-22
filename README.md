@@ -48,14 +48,13 @@ this command or select **Run and Debug**
 ## Team
 
 - Jean Jacques
-- Vini Mota
+- [Vini Mota](https://github.com/ferpakill)
 - Gabriel Petillo
 - Vitor Rico
 
 ## Getting Started
 
 Developed by [Jean Jacques](https://github.com/jjeanjacques10) 
-Developed by [Vinicius Mota](https://github.com/ferpakill)
 
 
 
