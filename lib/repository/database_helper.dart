@@ -113,5 +113,6 @@ class DatabaseHelper {
     );
     await database.insert("ProfessorModel",
         new ProfessorModel(rm: "123", nome: "123", senha: "123").toMap());
+        
   }
 }
