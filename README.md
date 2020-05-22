@@ -55,6 +55,7 @@ this command or select **Run and Debug**
 ## Getting Started
 
 Developed by [Jean Jacques](https://github.com/jjeanjacques10) 
+Developed by [Vinicius Mota](https://github.com/ferpakill)
 
 
 
