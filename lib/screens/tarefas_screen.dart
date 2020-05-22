@@ -27,21 +27,6 @@ class _TarefasScreenState extends State<TarefasScreen> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              Row(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                    child: Text(
-                      "Aulas do dia:",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               Card(
                 elevation: 12.0,
                 margin: new EdgeInsets.symmetric(

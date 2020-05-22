@@ -30,21 +30,6 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              Row(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                    child: Text(
-                      "Aulas do dia:",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               ItemCard('Desenvolvimento Cross Platform', '3SIA', '11:40',
                   '304 un. 2'),
               ItemCard('Desenvolvimento Mobile, Games e iOT', '3SIB', '01:40',
