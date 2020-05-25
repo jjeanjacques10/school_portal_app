@@ -1,7 +1,13 @@
 import 'package:school_portal_app/models/aluno_model.dart';
+import 'package:school_portal_app/models/atividade_aluno.dart';
+import 'package:school_portal_app/models/atividade_model.dart';
 import 'package:school_portal_app/models/chamada_model.dart';
+import 'package:school_portal_app/models/disciplina_model.dart';
+import 'package:school_portal_app/models/disciplina_turma.dart';
 import 'package:school_portal_app/models/professor_model.dart';
 import 'package:school_portal_app/models/turma_model.dart';
+
+
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -90,8 +96,8 @@ class DatabaseHelper {
         nota TEXT,
         tipo TEXT,
         dataEntrega TEXT,
-        idCurso INTEGER,
-        FOREIGN KEY(idCurso) REFERENCES DisciplinaModel(id)
+        idDisciplina INTEGER,
+        FOREIGN KEY(idDisciplina) REFERENCES DisciplinaModel(id)
       );
 
       CREATE TABLE AtividadeAluno(
@@ -127,18 +133,20 @@ class DatabaseHelper {
         new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
 
     await database.insert("DisciplinaTurma",
-        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+        new DisciplinaTurma(id: 85132, ).toMap());
 
     await database.insert("DisciplinaModel",
-        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+        new DisciplinaModel(id: 85132, nome: "Jean", ).toMap());
 
     await database.insert("AtividadeModel",
-        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+        new AtividadeModel(id: 6564, nota: "10", tipo: "prova",dataEntrega:"12/06/2021").toMap());
 
     await database.insert("AtividadeAluno",
-        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+        new AtividadeAluno(id: 832).toMap());
 
     await database.insert("ChamadaModel",
-        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+        new ChamadaModel(id: 85132, presente: 1, data:"22/12/2022").toMap());
   }
+
+
 }
