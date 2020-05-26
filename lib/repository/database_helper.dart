@@ -46,7 +46,7 @@ class DatabaseHelper {
 
     await database.execute(
       '''
-    CREATE TABLE  ProfessorModel(
+       CREATE TABLE  ProfessorModel(
         rm TEXT PRIMARY KEY ,
         nome TEXT,
         senha TEXT NOT NULL
@@ -69,14 +69,6 @@ class DatabaseHelper {
         FOREIGN KEY(idTurma) REFERENCES turmaModel(id)
       );
 
-      CREATE TABLE DisciplinaTurma(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        idDisciplina INTEGER,
-        idTurma INTEGER,
-        FOREIGN KEY(idDisciplina) REFERENCES DisciplinaModel(id),
-        FOREIGN KEY(idTurma) REFERENCES DisciplinaModel(id)
-      );
-
       CREATE TABLE DisciplinaModel (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT,
@@ -84,6 +76,13 @@ class DatabaseHelper {
         FOREIGN KEY(rmProfessor) REFERENCES ProfessorModel(rm)
       );
 
+      CREATE TABLE DisciplinaTurma(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        idDisciplina INTEGER,
+        idTurma INTEGER,
+        FOREIGN KEY(idDisciplina) REFERENCES DisciplinaModel(id),
+        FOREIGN KEY(idTurma) REFERENCES DisciplinaModel(id)
+      );
 
      CREATE TABLE AtividadeModel(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -107,9 +106,9 @@ class DatabaseHelper {
         presente INTEGER DEFAULT 0,
         data TEXT,
         rmAluno TEXT,
-        idDisciplina INTEGER,
+        idDisciplinaTurma INTEGER,
         FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
-        FOREIGN KEY(idDisciplina) REFERENCES DisciplinaModel(id)
+        FOREIGN KEY(idDisciplinaTurma) REFERENCES DisciplinaTurma(id)
       );
      
       ''',
