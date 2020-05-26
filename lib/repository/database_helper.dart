@@ -1,7 +1,13 @@
 import 'package:school_portal_app/models/aluno_model.dart';
+import 'package:school_portal_app/models/atividade_aluno.dart';
+import 'package:school_portal_app/models/atividade_model.dart';
 import 'package:school_portal_app/models/chamada_model.dart';
+import 'package:school_portal_app/models/disciplina_model.dart';
+import 'package:school_portal_app/models/disciplina_turma.dart';
 import 'package:school_portal_app/models/professor_model.dart';
 import 'package:school_portal_app/models/turma_model.dart';
+
+
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -89,8 +95,8 @@ class DatabaseHelper {
         nota TEXT,
         tipo TEXT,
         dataEntrega TEXT,
-        idCurso INTEGER,
-        FOREIGN KEY(idCurso) REFERENCES DisciplinaModel(id)
+        idDisciplina INTEGER,
+        FOREIGN KEY(idDisciplina) REFERENCES DisciplinaModel(id)
       );
 
       CREATE TABLE AtividadeAluno(
@@ -115,29 +121,43 @@ class DatabaseHelper {
     );
     await database.insert("ProfessorModel",
         new ProfessorModel(rm: "123", nome: "Flavio", senha: "123").toMap());
+    await database.insert("ProfessorModel",
+        new ProfessorModel(rm: "1234", nome: "Pedro", senha: "123").toMap());
+
 
     await database.insert("TurmaModel",
-        new TurmaModel(id: 11, nome: 'Flutter',ano: '3SIA', horario: 'manha', inicio: '0800',termino: '1145').toMap());
-
+        new TurmaModel(id: 11, nome: 'Flutter',ano: '3SIA', horario: 'manha', inicio: '0800',termino: '0945').toMap());
     await database.insert("TurmaModel",
-        new TurmaModel(id: 11,nome: 'Flutter',ano: '3SIB',horario: 'manha',inicio: '0800',termino: '1145').toMap());
+        new TurmaModel(id: 11,nome: 'Flutter',ano: '3SIB',horario: 'manha',inicio: '1000',termino: '1145').toMap());
+
 
     await database.insert("AlunoModel",
-        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+        new AlunoModel(rm: "85132", nome: "Jean", foto: "foto.png",).toMap());
+    await database.insert("AlunoModel",
+        new AlunoModel(rm: "80101", nome: "vini", foto: "foto.png",).toMap());
+    await database.insert("AlunoModel",
+        new AlunoModel(rm: "85183", nome: "petillo", foto: "foto.png",).toMap());
+    await database.insert("AlunoModel",
+        new AlunoModel(rm: "49845", nome: "vitor", foto: "foto.png",).toMap());
 
     await database.insert("DisciplinaTurma",
-        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+        new DisciplinaTurma(id: 1, idTurma: 1, idDisciplina: 1,).toMap());
 
     await database.insert("DisciplinaModel",
-        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+        new DisciplinaModel(id: 1, nome: "Flavio", rmProfessor: "1",).toMap());
 
     await database.insert("AtividadeModel",
-        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+        new AtividadeModel(id: 1, nota: "10", tipo: "1",dataEntrega: "12/12/2020",idDisciplina: 1).toMap());
 
     await database.insert("AtividadeAluno",
-        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+        new AtividadeAluno(id: 1, rmAluno:  "10", idAtividade: 1).toMap());
 
     await database.insert("ChamadaModel",
-        new AlunoModel(rm: 85132, nome: "Jean", foto: "foto.png",).toMap());
+        new ChamadaModel(id: 49845, presente: 0, data:"12/15/2020", rmAluno:"85132", idDisciplinaTurma:1 ).toMap());
+
+      
+
   }
+
+
 }
