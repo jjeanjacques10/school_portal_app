@@ -115,7 +115,7 @@ class DatabaseHelper {
         rmAluno TEXT,
         idDisciplina INTEGER,
         FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
-        FOREIGN KEY(idDisciplina) REFERENCES DisciplinaModel(id)
+        FOREIGN KEY(idDisciplinaTurma) REFERENCES DisciplinaTurma(id)
       );
      
       ''',
