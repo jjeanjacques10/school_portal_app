@@ -6,15 +6,15 @@ class ChamadaModel {
   int id;
   int presente;
   String data;
-  AlunoModel alunoModel;
-  DisciplinaModel cursoModel;
+  String rmAluno;
+  int idDisciplinaTurma;
 
   ChamadaModel({
     this.id,
     this.presente,
-    this.alunoModel,
-    this.cursoModel,
     this.data,
+    this.rmAluno,
+    this.idDisciplinaTurma,
   });
 
   factory ChamadaModel.fromJson(String str) =>
@@ -25,16 +25,16 @@ class ChamadaModel {
   factory ChamadaModel.fromMap(Map<String, dynamic> json) => ChamadaModel(
         id: json["id"],
         presente: json["presente"],
-        alunoModel: json["alunoModel"],
-        cursoModel: json["cursoModel"],
+        rmAluno: json["rmAluno"],
+        idDisciplinaTurma: json["idDisciplinaTurma"],
         data: json["data"],
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
         "presente": presente,
-        "alunoModel": alunoModel,
-        "cursoModel": cursoModel,
+        "rmAluno": rmAluno,
+        "idDisciplinaTurma": idDisciplinaTurma,
         "data": data,
       };
 }

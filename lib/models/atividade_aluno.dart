@@ -6,13 +6,13 @@ import 'atividade_model.dart';
 
 class AtividadeAluno {
   int id;
-  AlunoModel alunoModel;
-  AtividadeModel atividadeModel;
+  String rmAluno;
+  int idAtividade;
 
   AtividadeAluno({
     this.id,
-    this.alunoModel,
-    this.atividadeModel,
+    this.rmAluno,
+    this.idAtividade,
   });
 
   factory AtividadeAluno.fromJson(String str) =>
@@ -22,13 +22,13 @@ class AtividadeAluno {
 
   factory AtividadeAluno.fromMap(Map<String, dynamic> json) => AtividadeAluno(
         id: json["id"],
-        alunoModel: json["alunoModel"],
-        atividadeModel: json["atividadeModel"],
+        rmAluno: json["rmAluno"],
+        idAtividade: json["idAtividade"],
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
-        "alunoModel": alunoModel,
-        "atividadeModel":atividadeModel,
+        "rmAluno": rmAluno,
+        "idAtividade":idAtividade,
       };
 }

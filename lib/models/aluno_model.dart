@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'turma_model.dart';
 
 class AlunoModel {
-  int rm;
+  String rm;
   String nome;
   String foto;
   TurmaModel turmaModel;

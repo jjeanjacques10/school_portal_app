@@ -5,12 +5,12 @@ import 'professor_model.dart';
 class DisciplinaModel {
   int id;
   String nome;
-  ProfessorModel professorModel;
+  String rmProfessor;
 
   DisciplinaModel({
     this.id,
     this.nome,
-    this.professorModel,
+    this.rmProfessor,
   });
 
   factory DisciplinaModel.fromJson(String str) =>
@@ -21,12 +21,12 @@ class DisciplinaModel {
   factory DisciplinaModel.fromMap(Map<String, dynamic> json) => DisciplinaModel(
         id: json["id"],
         nome: json["nome"],
-        professorModel: json["professorModel"],
+        rmProfessor: json["rmProfessor"],
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
         "nome": nome,
-        "professorModel":professorModel,
+        "rmProfessor":rmProfessor,
       };
 }
