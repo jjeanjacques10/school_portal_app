@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Montserrat',
       ),
       home: MaterialApp(
-        initialRoute: '/tarefas',
+        initialRoute: '/home',
         routes: {
           '/login': (context) => LoginScreen(),
           '/menu': (context) => MenuScreen(),

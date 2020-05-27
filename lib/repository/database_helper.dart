@@ -39,7 +39,7 @@ class DatabaseHelper {
 
     var database = await openDatabase(
       dbPath,
-      version: 4,
+      version: 1,
       onCreate: _createTables,
     );
 
@@ -145,93 +145,36 @@ class DatabaseHelper {
     await database.insert("ProfessorModel",
         new ProfessorModel(rm: "1234", nome: "Pedro", senha: "123").toMap());
 
-    await database.insert(
-        "TurmaModel",
-        new TurmaModel(
-                id: 11,
-                nome: 'Flutter',
-                ano: '3SIA',
-                horario: 'manha',
-                inicio: '0800',
-                termino: '0945')
-            .toMap());
-    await database.insert(
-        "TurmaModel",
-        new TurmaModel(
-                id: 12,
-                nome: 'Flutter',
-                ano: '3SIB',
-                horario: 'manha',
-                inicio: '1000',
-                termino: '1145')
-            .toMap());
 
-    await database.insert(
-        "AlunoModel",
-        new AlunoModel(
-          rm: "85132",
-          nome: "Jean",
-          foto: "foto.png",
-        ).toMap());
-    await database.insert(
-        "AlunoModel",
-        new AlunoModel(
-          rm: "80101",
-          nome: "vini",
-          foto: "foto.png",
-        ).toMap());
-    await database.insert(
-        "AlunoModel",
-        new AlunoModel(
-          rm: "85183",
-          nome: "petillo",
-          foto: "foto.png",
-        ).toMap());
-    await database.insert(
-        "AlunoModel",
-        new AlunoModel(
-          rm: "49845",
-          nome: "vitor",
-          foto: "foto.png",
-        ).toMap());
+    await database.insert("TurmaModel",
+        new TurmaModel(id: 1, nome: 'Flutter',ano: '3SIA', horario: 'manha', inicio: '0800',termino: '0945').toMap());
+    await database.insert("TurmaModel",
+        new TurmaModel(id: 2,nome: 'Flutter',ano: '3SIB',horario: 'manha',inicio: '1000',termino: '1145').toMap());
 
-    await database.insert(
-        "DisciplinaTurma",
-        new DisciplinaTurma(
-          id: 1,
-          idTurma: 1,
-          idDisciplina: 1,
-        ).toMap());
 
-    await database.insert(
-        "DisciplinaModel",
-        new DisciplinaModel(
-          id: 1,
-          nome: "Flavio",
-          rmProfessor: "1",
-        ).toMap());
+    await database.insert("AlunoModel",
+        new AlunoModel(rm: "85132", nome: "Jean", foto: "foto.png",idTurma: 1).toMap());
+    await database.insert("AlunoModel",
+        new AlunoModel(rm: "80101", nome: "vini", foto: "foto.png",idTurma: 2).toMap());
+    await database.insert("AlunoModel",
+        new AlunoModel(rm: "85183", nome: "petillo", foto: "foto.png",idTurma: 1).toMap());
+    await database.insert("AlunoModel",
+        new AlunoModel(rm: "49845", nome: "vitor", foto: "foto.png",idTurma: 1).toMap());
 
-    await database.insert(
-        "AtividadeModel",
-        new AtividadeModel(
-                id: 1,
-                nota: "10",
-                tipo: "1",
-                dataEntrega: "12/12/2020",
-                idDisciplina: 1)
-            .toMap());
+    await database.insert("DisciplinaTurma",
+        new DisciplinaTurma(id: 1, idTurma: 1, idDisciplina: 1,).toMap());
+
+    await database.insert("DisciplinaModel",
+        new DisciplinaModel(id: 1, nome: "Flavio", rmProfessor: "123",).toMap());
+
+    await database.insert("AtividadeModel",
+        new AtividadeModel(id: 1, nota: "10", tipo: "1",dataEntrega: "12/12/2020",idDisciplina: 1).toMap());
 
     await database.insert("AtividadeAluno",
-        new AtividadeAluno(id: 1, rmAluno: "10", idAtividade: 1).toMap());
+        new AtividadeAluno(id: 1, rmAluno:  "10", idAtividade: 1).toMap());
 
-    await database.insert(
-        "ChamadaModel",
-        new ChamadaModel(
-                id: 49845,
-                presente: 0,
-                data: "12/15/2020",
-                rmAluno: "85132",
-                idDisciplinaTurma: 1)
-            .toMap());
+    await database.insert("ChamadaModel",
+        new ChamadaModel(id: 49845, presente: 0, data:"12/15/2020", rmAluno:"85132", idDisciplinaTurma:1 ).toMap());
+
   }
 }
