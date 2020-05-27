@@ -133,13 +133,13 @@ class DatabaseHelper {
 
 
     await database.insert("AlunoModel",
-        new AlunoModel(rm: "85132", nome: "Jean", foto: "foto.png",).toMap());
+        new AlunoModel(rm: "85132", nome: "Jean", foto: "foto.png",idTurma: 1).toMap());
     await database.insert("AlunoModel",
-        new AlunoModel(rm: "80101", nome: "vini", foto: "foto.png",).toMap());
+        new AlunoModel(rm: "80101", nome: "vini", foto: "foto.png",idTurma: 2).toMap());
     await database.insert("AlunoModel",
-        new AlunoModel(rm: "85183", nome: "petillo", foto: "foto.png",).toMap());
+        new AlunoModel(rm: "85183", nome: "petillo", foto: "foto.png",idTurma: 1).toMap());
     await database.insert("AlunoModel",
-        new AlunoModel(rm: "49845", nome: "vitor", foto: "foto.png",).toMap());
+        new AlunoModel(rm: "49845", nome: "vitor", foto: "foto.png",idTurma: 1).toMap());
 
     await database.insert("DisciplinaTurma",
         new DisciplinaTurma(id: 1, idTurma: 1, idDisciplina: 1,).toMap());
@@ -155,8 +155,6 @@ class DatabaseHelper {
 
     await database.insert("ChamadaModel",
         new ChamadaModel(id: 49845, presente: 0, data:"12/15/2020", rmAluno:"85132", idDisciplinaTurma:1 ).toMap());
-
-      
 
   }
 
