@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'aluno_model.dart';
 
 
 class AtividadeModel {

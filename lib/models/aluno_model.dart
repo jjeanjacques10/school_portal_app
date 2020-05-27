@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'turma_model.dart';
 
 class AlunoModel {
   String rm;
