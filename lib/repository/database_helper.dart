@@ -40,7 +40,7 @@ class DatabaseHelper {
 
     var database = await openDatabase(
       dbPath,
-      version: 4,
+      version: 1,
       onCreate: _createTables,
     );
 
@@ -156,9 +156,9 @@ class DatabaseHelper {
 
 
     await database.insert("TurmaModel",
-        new TurmaModel(id: 11, nome: 'Flutter',ano: '3SIA', horario: 'manha', inicio: '0800',termino: '0945').toMap());
+        new TurmaModel(id: 1, nome: 'Flutter',ano: '3SIA', horario: 'manha', inicio: '0800',termino: '0945').toMap());
     await database.insert("TurmaModel",
-        new TurmaModel(id: 11,nome: 'Flutter',ano: '3SIB',horario: 'manha',inicio: '1000',termino: '1145').toMap());
+        new TurmaModel(id: 2,nome: 'Flutter',ano: '3SIB',horario: 'manha',inicio: '1000',termino: '1145').toMap());
 
 
     await database.insert("AlunoModel",
