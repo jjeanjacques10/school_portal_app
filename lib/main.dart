@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Montserrat',
       ),
       home: MaterialApp(
-        initialRoute: '/menu',
+        initialRoute: '/chamada-detalhes',
         routes: {
           '/login': (context) => LoginScreen(),
           '/menu': (context) => MenuScreen(),

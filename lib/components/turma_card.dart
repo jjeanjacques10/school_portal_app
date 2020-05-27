@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 
 class TurmaCard extends StatelessWidget {
+  final int id;
   final String nome;
   final String disciplina;
   final String horario;
   final String inicio;
   final String termino;
   final String rota;
+  final BuildContext page_context;
 
-  const TurmaCard(this.nome, this.disciplina, this.horario, this.inicio,
-      this.termino, this.rota);
+  const TurmaCard({
+    this.id,
+    this.nome,
+    this.disciplina,
+    this.horario,
+    this.inicio,
+    this.termino,
+    this.rota,
+    this.page_context,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +37,7 @@ class TurmaCard extends StatelessWidget {
           contentPadding:
               EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
           title: Text(
-            nome,
+            disciplina,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -41,7 +51,7 @@ class TurmaCard extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 0),
                   child: Text(
-                    "3SIA | 10h00 | 504 un. 2",
+                    "${nome} | ${horario} | ${inicio} | ${termino}",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,
@@ -58,8 +68,9 @@ class TurmaCard extends StatelessWidget {
           ),
           onTap: () {
             Navigator.pushNamed(
-              context,
+              page_context,
               rota,
+              arguments: id,
             );
           },
         ),
