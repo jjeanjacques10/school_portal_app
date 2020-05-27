@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ChamadaCard extends StatefulWidget {
+class TarefasCard extends StatefulWidget {
   final String nome;
 
   final String rm;
   final String foto;
   final String sala;
 
-  const ChamadaCard(
+  const TarefasCard(
     this.nome,
     this.rm,
     this.foto,
@@ -15,10 +15,10 @@ class ChamadaCard extends StatefulWidget {
   );
 
   @override
-  _ChamadaCardState createState() => _ChamadaCardState();
+  _TarefasCardState createState() => _TarefasCardState();
 }
 
-class _ChamadaCardState extends State<ChamadaCard> {
+class _TarefasCardState extends State<TarefasCard> {
   bool isChecked = false;
 
   @override
@@ -62,18 +62,17 @@ class _ChamadaCardState extends State<ChamadaCard> {
               )
             ],
           ),
-          trailing: Checkbox(
-              value: isChecked,
-              onChanged: (bool newValue) {
-                setState(() {
-                  isChecked = newValue;
-                });
-              },
-              activeColor: Colors.white,
-              checkColor: Colors.pink),
-          onTap: () {
-            //navegarTelaCursoDetalhes(context, curso);
-          },
+          trailing: Container(
+            width: 30.0,
+            child: TextField(
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              style: TextStyle(
+                fontSize: 20.0,
+                height: 2.0,
+                color: Colors.white,
+              ),
+            ),
+          ),
         ),
       ),
     );

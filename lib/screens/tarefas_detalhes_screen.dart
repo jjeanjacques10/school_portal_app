@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:school_portal_app/components/chamada_card.dart';
+import 'package:school_portal_app/components/tarefas_card.dart';
 
-class ChamadaDetalhesScreen extends StatefulWidget {
-  ChamadaDetalhesScreen({Key key}) : super(key: key);
+class TarefasDetalhesScreen extends StatefulWidget {
+  TarefasDetalhesScreen({Key key}) : super(key: key);
 
   @override
-  _ChamadaDetalhesScreenState createState() => _ChamadaDetalhesScreenState();
+  _TarefasDetalhesScreenState createState() => _TarefasDetalhesScreenState();
 }
 
-class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
+class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,7 +23,7 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
                 child: Text(
-                  'Chamada | 3SIB | 30/05/2020',
+                  'Tarefas | 3SIB | 30/05/2020',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.pink,
@@ -31,22 +31,37 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              ChamadaCard(
+              TarefasCard(
                   'Vitor Rico',
                   'RM80515',
                   'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
                   '3SIB'),
-              ChamadaCard(
+              TarefasCard(
                   'Gabriel Petillo',
                   'RM81238',
                   'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
                   '3SIB'),
-              ChamadaCard(
+              TarefasCard(
                   'Jean Jacques',
                   'RM80515',
                   'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
                   '3SIB'),
-              ChamadaCard(
+              TarefasCard(
+                  'Vinicius Mota',
+                  'RM81238',
+                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+                  '3SIB'),
+              TarefasCard(
+                  'Gabriel Petillo',
+                  'RM81238',
+                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+                  '3SIB'),
+              TarefasCard(
+                  'Jean Jacques',
+                  'RM80515',
+                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+                  '3SIB'),
+              TarefasCard(
                   'Vinicius Mota',
                   'RM81238',
                   'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
