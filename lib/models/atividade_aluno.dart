@@ -1,8 +1,4 @@
 import 'dart:convert';
-import 'aluno_model.dart';
-import 'atividade_model.dart';
-
-
 
 class AtividadeAluno {
   int id;

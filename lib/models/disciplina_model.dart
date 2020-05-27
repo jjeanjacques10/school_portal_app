@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'professor_model.dart';
-
 
 class DisciplinaModel {
   int id;

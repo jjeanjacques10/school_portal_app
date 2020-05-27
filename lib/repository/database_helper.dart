@@ -1,6 +1,7 @@
 import 'package:school_portal_app/models/aluno_model.dart';
 import 'package:school_portal_app/models/atividade_aluno.dart';
 import 'package:school_portal_app/models/atividade_model.dart';
+import 'package:school_portal_app/models/chamada_aluno.dart';
 import 'package:school_portal_app/models/chamada_model.dart';
 import 'package:school_portal_app/models/disciplina_model.dart';
 import 'package:school_portal_app/models/disciplina_turma.dart';
@@ -39,7 +40,7 @@ class DatabaseHelper {
 
     var database = await openDatabase(
       dbPath,
-      version: 4,
+      version: 1,
       onCreate: _createTables,
     );
 
@@ -129,12 +130,20 @@ class DatabaseHelper {
       '''
       CREATE TABLE ChamadaModel(
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-        presente INTEGER DEFAULT 0,
         data TEXT,
-        rmAluno TEXT,
         idDisciplinaTurma INTEGER,
-        FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
         FOREIGN KEY(idDisciplinaTurma) REFERENCES DisciplinaTurma(id)
+      );
+     
+      ''',
+    );
+    await database.execute(
+      '''
+      CREATE TABLE ChamadaAluno(
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        presente INTEGER DEFAULT 0,
+        rmAluno TEXT,
+        FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
       );
      
       ''',
@@ -147,9 +156,9 @@ class DatabaseHelper {
 
 
     await database.insert("TurmaModel",
-        new TurmaModel(id: 11, nome: 'Flutter',ano: '3SIA', horario: 'manha', inicio: '0800',termino: '0945').toMap());
+        new TurmaModel(id: 1, nome: 'Flutter',ano: '3SIA', horario: 'manha', inicio: '0800',termino: '0945').toMap());
     await database.insert("TurmaModel",
-        new TurmaModel(id: 11,nome: 'Flutter',ano: '3SIB',horario: 'manha',inicio: '1000',termino: '1145').toMap());
+        new TurmaModel(id: 2,nome: 'Flutter',ano: '3SIB',horario: 'manha',inicio: '1000',termino: '1145').toMap());
 
 
     await database.insert("AlunoModel",
@@ -173,17 +182,31 @@ class DatabaseHelper {
     await database.insert("AtividadeAluno",
         new AtividadeAluno(id: 1, rmAluno:  "10", idAtividade: 1).toMap());
 
-    await database.insert("ChamadaModel",
-        new ChamadaModel(id: 49845, presente: 0, data:"19/3/2020", rmAluno:"85132", idDisciplinaTurma:1 ).toMap());
 
     await database.insert("ChamadaModel",
-        new ChamadaModel(id: 49846, presente: 1, data:"15/4/2020", rmAluno:"80101", idDisciplinaTurma:1 ).toMap());
+        new ChamadaModel(id: 49845,  data:"19/3/2020", idDisciplinaTurma:1 ).toMap());
 
     await database.insert("ChamadaModel",
-        new ChamadaModel(id: 49847, presente: 1, data:"12/12/2020", rmAluno:"49845", idDisciplinaTurma:1 ).toMap());
+        new ChamadaModel(id: 49846,  data:"15/4/2020", idDisciplinaTurma:1 ).toMap());
 
     await database.insert("ChamadaModel",
-        new ChamadaModel(id: 49848, presente: 0, data:"12/12/2020", rmAluno:"85183", idDisciplinaTurma:1 ).toMap());
+        new ChamadaModel(id: 49847,  data:"12/12/2020", idDisciplinaTurma:1 ).toMap());
+
+    await database.insert("ChamadaModel",
+        new ChamadaModel(id: 49848,  data:"12/12/2020", idDisciplinaTurma:1 ).toMap());
+
+
+    await database.insert("ChamadaAluno",
+        new ChamadaAluno(id: 49849, presente: 0, rmAluno:"85132" ).toMap());
+
+    await database.insert("ChamadaAluno",
+        new ChamadaAluno(id: 49850, presente: 1, rmAluno:"80101" ).toMap());
+
+    await database.insert("ChamadaAluno",
+        new ChamadaAluno(id: 49851, presente: 0, rmAluno:"85183" ).toMap());
+
+    await database.insert("ChamadaAluno",
+        new ChamadaAluno(id: 49852, presente: 1, rmAluno:"49845" ).toMap());
 
 
   }
