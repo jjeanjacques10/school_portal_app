@@ -1,23 +1,14 @@
 import 'dart:convert';
-import 'professor_model.dart';
-import 'aluno_model.dart';
-import 'curso_model.dart';
 
 class ChamadaModel {
   int id;
-  String presente;
-  ProfessorModel professorModel;
-  AlunoModel alunoModel;
-  CursoModel cursoModel;
-  DateTime data;
+  String data;
+  int idDisciplinaTurma;
 
   ChamadaModel({
     this.id,
-    this.presente,
-    this.professorModel,
-    this.alunoModel,
-    this.cursoModel,
     this.data,
+    this.idDisciplinaTurma,
   });
 
   factory ChamadaModel.fromJson(String str) =>
@@ -27,19 +18,13 @@ class ChamadaModel {
 
   factory ChamadaModel.fromMap(Map<String, dynamic> json) => ChamadaModel(
         id: json["id"],
-        presente: json["presente"],
-        professorModel: json["professorModel"],
-        alunoModel: json["alunoModel"],
-        cursoModel: json["cursoModel"],
+        idDisciplinaTurma: json["idDisciplinaTurma"],
         data: json["data"],
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
-        "presente": presente,
-        "professorModel": professorModel,
-        "alunoModel": alunoModel,
-        "cursoModel": cursoModel,
+        "idDisciplinaTurma": idDisciplinaTurma,
         "data": data,
       };
 }

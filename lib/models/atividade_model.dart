@@ -1,33 +1,32 @@
 import 'dart:convert';
-import 'aluno_model.dart';
 
 
-class CursoModel {
+class AtividadeModel {
   int id;
   String nota;
   String tipo;
-  DateTime dataEntrega;
-  AlunoModel alunoModel;
+  String dataEntrega;
+  int idDisciplina;
 
-  CursoModel({
+  AtividadeModel({
     this.id,
     this.nota,
     this.tipo,
     this.dataEntrega,
-    this.alunoModel,
+    this.idDisciplina,
   });
 
-  factory CursoModel.fromJson(String str) =>
-      CursoModel.fromMap(json.decode(str));
+  factory AtividadeModel.fromJson(String str) =>
+      AtividadeModel.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory CursoModel.fromMap(Map<String, dynamic> json) => CursoModel(
+  factory AtividadeModel.fromMap(Map<String, dynamic> json) => AtividadeModel(
         id: json["id"],
         nota: json["nota"],
         tipo: json["tipo"],
         dataEntrega: json["dataEntrega"],
-        alunoModel: json["alunoModel"],
+        idDisciplina: json["idDisciplina"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -35,6 +34,6 @@ class CursoModel {
         "nota": nota,
         "tipo": tipo,
         "dataEntrega":dataEntrega,
-        "alunoModel":alunoModel,
+        "idDisciplina":idDisciplina,
       };
 }

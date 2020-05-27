@@ -1,17 +1,16 @@
 import 'dart:convert';
-import 'turma_model.dart';
 
 class AlunoModel {
-  int rm;
+  String rm;
   String nome;
   String foto;
-  TurmaModel turmaModel;
+  int idTurma;
 
   AlunoModel({
     this.rm,
     this.nome,
     this.foto,
-    this.turmaModel,
+    this.idTurma,
   });
 
   factory AlunoModel.fromJson(String str) =>
@@ -23,13 +22,13 @@ class AlunoModel {
         rm: json["rm"],
         nome: json["nome"],
         foto: json["foto"],
-        turmaModel: json["turmaModel"],
+        idTurma: json["idTurma"],
       );
 
   Map<String, dynamic> toMap() => {
         "rm": rm,
         "nome": nome,
         "foto": foto,
-        "turmaModel": turmaModel,
+        "idTurma": idTurma,
       };
 }
