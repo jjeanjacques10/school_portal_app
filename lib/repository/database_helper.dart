@@ -153,16 +153,16 @@ class DatabaseHelper {
 
 
     await database.insert("AlunoModel",
-        new AlunoModel(rm: "85132", nome: "Jean", foto: "foto.png",idTurma: 1).toMap());
+        new AlunoModel(rm: "85132", nome: "Jean", foto: "foto.png",idTurma: 11).toMap());
     await database.insert("AlunoModel",
-        new AlunoModel(rm: "80101", nome: "vini", foto: "foto.png",idTurma: 2).toMap());
+        new AlunoModel(rm: "80101", nome: "vini", foto: "foto.png",idTurma: 11).toMap());
     await database.insert("AlunoModel",
-        new AlunoModel(rm: "85183", nome: "petillo", foto: "foto.png",idTurma: 1).toMap());
+        new AlunoModel(rm: "85183", nome: "petillo", foto: "foto.png",idTurma: 11).toMap());
     await database.insert("AlunoModel",
-        new AlunoModel(rm: "49845", nome: "vitor", foto: "foto.png",idTurma: 1).toMap());
+        new AlunoModel(rm: "49845", nome: "vitor", foto: "foto.png",idTurma: 11).toMap());
 
     await database.insert("DisciplinaTurma",
-        new DisciplinaTurma(id: 1, idTurma: 1, idDisciplina: 1,).toMap());
+        new DisciplinaTurma(id: 1, idTurma: 11, idDisciplina: 1,).toMap());
 
     await database.insert("DisciplinaModel",
         new DisciplinaModel(id: 1, nome: "Flavio", rmProfessor: "123",).toMap());
@@ -174,7 +174,17 @@ class DatabaseHelper {
         new AtividadeAluno(id: 1, rmAluno:  "10", idAtividade: 1).toMap());
 
     await database.insert("ChamadaModel",
-        new ChamadaModel(id: 49845, presente: 0, data:"12/15/2020", rmAluno:"85132", idDisciplinaTurma:1 ).toMap());
+        new ChamadaModel(id: 49845, presente: 0, data:"19/3/2020", rmAluno:"85132", idDisciplinaTurma:1 ).toMap());
+
+    await database.insert("ChamadaModel",
+        new ChamadaModel(id: 49846, presente: 1, data:"15/4/2020", rmAluno:"80101", idDisciplinaTurma:1 ).toMap());
+
+    await database.insert("ChamadaModel",
+        new ChamadaModel(id: 49847, presente: 1, data:"12/12/2020", rmAluno:"49845", idDisciplinaTurma:1 ).toMap());
+
+    await database.insert("ChamadaModel",
+        new ChamadaModel(id: 49848, presente: 0, data:"12/12/2020", rmAluno:"85183", idDisciplinaTurma:1 ).toMap());
+
 
   }
 }
