@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_portal_app/components/item_card.dart';
+import 'package:school_portal_app/repository/chamada_repository.dart';
 
 class ChamadaScreen extends StatefulWidget {
   ChamadaScreen({Key key}) : super(key: key);
@@ -9,6 +10,8 @@ class ChamadaScreen extends StatefulWidget {
 }
 
 class _ChamadaScreenState extends State<ChamadaScreen> {
+  ChamadaRepository chamadaRepository = ChamadaRepository();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,12 +33,27 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              ItemCard('Desenvolvimento Cross Platform', '3SIA', '11:40',
-                  '304 un. 2'),
-              ItemCard('Desenvolvimento Mobile, Games e iOT', '3SIB', '01:40',
-                  '301 un. 2'),
-              ItemCard('Microservice And Web Engineering', '2SIA', '19:00',
-                  '334 un. 2'),
+              FutureBuilder<List>(
+                //future: cursoRepository.findAll(),
+                future: chamadaRepository.findAll(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.data.length > 0) {
+                      //return buildListView(snapshot.data);
+                      return ItemCard('Desenvolvimento Cross Platform', '3SIA',
+                          '11:40', '304 un. 2');
+                    } else {
+                      return Center(
+                        child: Text("Nenhum curso cadastrado!"),
+                      );
+                    }
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ),
               SizedBox(height: 24),
               FutureBuilder<List>(
                 builder: (context, snapshot) {

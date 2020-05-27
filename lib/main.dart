@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/screens/chamada_detalhes_screen.dart';
 import 'package:school_portal_app/screens/chamada_screen.dart';
 import 'package:school_portal_app/screens/home_screen.dart';
 import 'package:school_portal_app/screens/login_screen.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Montserrat',
       ),
       home: MaterialApp(
-        initialRoute: '/home',
+        initialRoute: '/menu',
         routes: {
           '/login': (context) => LoginScreen(),
           '/menu': (context) => MenuScreen(),
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           '/tarefas': (context) => TarefasScreen(),
           //'/tarefas-detalhes': (context) => TarefasDetalhesScreen(),
           '/chamada': (context) => ChamadaScreen(),
-          //'/chamada-detalhes': (context) => ChamadaDetalhesScreen(),
+          '/chamada-detalhes': (context) => ChamadaDetalhesScreen(),
           '/novo-professor': (context) => NovoProfessorScreen(),
           '/editar-profesor': (context) => EditarProfessorScreen(),
         },
