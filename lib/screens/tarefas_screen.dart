@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:school_portal_app/components/tarefas_card.dart';
 import 'package:school_portal_app/components/turma_card.dart';
 import 'package:school_portal_app/models/turma_model.dart';
 import 'package:school_portal_app/repository/turma_repository.dart';
@@ -13,6 +12,7 @@ class TarefasScreen extends StatefulWidget {
 
 class _TarefasScreenState extends State<TarefasScreen> {
   TurmaRepository turmaRepository = TurmaRepository();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,7 +26,7 @@ class _TarefasScreenState extends State<TarefasScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
                 child: Text(
-                  'Tarefas',
+                  'Chamada',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       color: Colors.pink,
@@ -74,11 +74,15 @@ class _TarefasScreenState extends State<TarefasScreen> {
       itemBuilder: (BuildContext ctx, int index) {
         TurmaModel turma = turmas[index];
 
-        return TarefasCard(
+        return TurmaCard(
+          id: turma.id,
           nome: turma.nome,
-          rm:"",
-          foto: "",
-          sala: "",
+          disciplina: turma.disciplina,
+          horario: turma.horario,
+          inicio: turma.inicio,
+          termino: turma.termino,
+          rota: '/chamada-detalhes',
+          page_context: context,
         );
       },
     );
