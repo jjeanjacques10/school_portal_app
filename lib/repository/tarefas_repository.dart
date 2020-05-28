@@ -13,7 +13,7 @@ class TarefasRepository {
   Future<List<TarefasModel>> findAll() async {
     var connection = await _databaseHelper.connection;
     var result = await connection.query(
-      "AtividadeModel",
+      "TarefasModel",
       columns: [
         "nome",
         "rm",
@@ -22,12 +22,12 @@ class TarefasRepository {
       ],
     );
     //Converte a lista de Maps para Lista de Cursos
-    List<TarefasModel> listaAtividade = new List<TarefasModel>();
+    List<TarefasModel> listaTarefas = new List<TarefasModel>();
     for (Map i in result) {
-      listaAtividade.add(TarefasModel.fromMap(i));
+      listaTarefas.add(TarefasModel.fromMap(i));
     }
 
-    return listaAtividade;
+    return listaTarefas;
   }
 
   Future<int> create(TarefasModel tarefasModel) async {
