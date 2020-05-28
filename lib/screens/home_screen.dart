@@ -14,41 +14,6 @@ class _HomeScreenState extends State<HomeScreen> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.grey[50],
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: Text(
-            'FIAPP',
-            style: TextStyle(
-              color: Colors.pink,
-              fontWeight: FontWeight.w300
-            ),
-          ),
-          centerTitle: true,
-          actions: [
-            PopupMenuButton<Choice>(
-              onSelected: _select,
-              itemBuilder: (BuildContext context) {
-                return choices.map((Choice choice) {
-                  return PopupMenuItem<Choice>(
-                    value: choice,
-                    child: Row(
-                      children: [
-                        Icon(
-                          choice.icon,
-                          color: Colors.pink,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Text(choice.title),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList();
-              },
-            ),
-          ],
-        ),
         body: Padding(
           padding: const EdgeInsets.only(top: 0),
           child: Column(
@@ -118,11 +83,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       ],
                     ),
-                    trailing: Icon(
-                      Icons.keyboard_arrow_right,
-                      color: Colors.white,
-                      size: 30.0,
-                    ),
                     onTap: () {
                       //navegarTelaCursoDetalhes(context, curso);
                     },
@@ -166,11 +126,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ],
-                    ),
-                    trailing: Icon(
-                      Icons.keyboard_arrow_right,
-                      color: Colors.white,
-                      size: 30.0,
                     ),
                     onTap: () {
                       //navegarTelaCursoDetalhes(context, curso);

@@ -6,12 +6,12 @@ class TarefasCard extends StatefulWidget {
   final String foto;
   final String sala;
 
-  const TarefasCard(
+  const TarefasCard({
     this.nome,
     this.rm,
     this.foto,
     this.sala,
-  );
+  });
 
   @override
   _TarefasCardState createState() => _TarefasCardState();
