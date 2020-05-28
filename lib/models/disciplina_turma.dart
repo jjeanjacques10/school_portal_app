@@ -1,7 +1,4 @@
 import 'dart:convert';
-import 'turma_model.dart';
-import 'disciplina_model.dart';
-
 
 class DisciplinaTurma {
   int id;
