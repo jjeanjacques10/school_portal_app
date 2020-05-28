@@ -97,7 +97,7 @@ class DatabaseHelper {
     );
     await database.execute(
       '''
-     CREATE TABLE AtividadeModel(
+     CREATE TABLE TarefasModel(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nota TEXT,
         tipo TEXT,
@@ -109,12 +109,12 @@ class DatabaseHelper {
     );
     await database.execute(
       '''
-      CREATE TABLE AtividadeAluno(
+      CREATE TABLE TarefasAluno(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         rmAluno TEXT,
-        idAtividade INTEGER,
+        idTarefas INTEGER,
         FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
-        FOREIGN KEY(idAtividade) REFERENCES AtividadeModel(id)
+        FOREIGN KEY(idTarefas) REFERENCES TarefasModel(id)
       );
             ''',
     );
@@ -185,11 +185,11 @@ class DatabaseHelper {
     await database.insert("DisciplinaModel",
         new DisciplinaModel(id: 1, nome: "Flavio", rmProfessor: "123",).toMap());
 
-    await database.insert("AtividadeModel",
-        new AtividadeModel(id: 1, nota: "10", tipo: "1",dataEntrega: "12/12/2020",idDisciplina: 1).toMap());
+    await database.insert("TarefasModel",
+        new TarefasModel(id: 1, nota: "10", tipo: "1",dataEntrega: "12/12/2020",idDisciplina: 1).toMap());
 
-    await database.insert("AtividadeAluno",
-        new AtividadeAluno(id: 1, rmAluno:  "10", idAtividade: 1).toMap());
+    await database.insert("TarefasAluno",
+        new TarefasAluno(id: 1, rmAluno:  "10", idTarefas: 1).toMap());
 
     await database.insert("ChamadaModel",
         new ChamadaModel(id: 49845, presente: 0, data:"12/15/2020", rmAluno:"85132", idDisciplinaTurma:1 ).toMap());
