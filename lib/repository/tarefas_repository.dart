@@ -1,42 +1,41 @@
-import 'package:school_portal_app/models/atividade_model.dart';
+import 'package:school_portal_app/models/tarefas_model.dart';
 import 'package:school_portal_app/repository/database_helper.dart';
 
-class AtividadeRepository {
+class TarefasRepository {
   // Instancia do Database Helper
   DatabaseHelper _databaseHelper;
 
   // Construtor
-  AtividadeRepository() {
+  TarefasRepository() {
     _databaseHelper = new DatabaseHelper();
   }
 
-  Future<List<AtividadeModel>> findAll() async {
+  Future<List<TarefasModel>> findAll() async {
     var connection = await _databaseHelper.connection;
     var result = await connection.query(
       "AtividadeModel",
       columns: [
-        "id",
-        "nota",
-        "tipo",
-        "dataEntrega",
-        "idDisciplina",
+        "nome",
+        "rm",
+        "foto",
+        "sala",
       ],
     );
     //Converte a lista de Maps para Lista de Cursos
-    List<AtividadeModel> listaAtividade = new List<AtividadeModel>();
+    List<TarefasModel> listaAtividade = new List<TarefasModel>();
     for (Map i in result) {
-      listaAtividade.add(AtividadeModel.fromMap(i));
+      listaAtividade.add(TarefasModel.fromMap(i));
     }
 
     return listaAtividade;
   }
 
-  Future<int> create(AtividadeModel atividadeModel) async {
+  Future<int> create(TarefasModel tarefasModel) async {
     var connection = await _databaseHelper.connection;
 
     var result = await connection.insert(
-      "AtividadeModel",
-      atividadeModel.toMap(),
+      "TarefasModel",
+      tarefasModel.toMap(),
     );
     return result;
   }
