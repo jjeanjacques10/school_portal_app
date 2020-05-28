@@ -75,15 +75,13 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
         TurmaModel turma = turmas[index];
 
         return TurmaCard(
-          id: turma.id,
-          nome: turma.nome,
-          disciplina: turma.disciplina,
-          horario: turma.horario,
-          inicio: turma.inicio,
-          termino: turma.termino,
-          rota: '/chamada-detalhes',
-          page_context: context,
-        );
+            id: turma.id,
+            nome: turma.nome,
+            disciplina: turma.disciplina,
+            horario: turma.horario,
+            inicio: turma.inicio,
+            termino: turma.termino,
+            rota: '/chamada-detalhes');
       },
     );
   }

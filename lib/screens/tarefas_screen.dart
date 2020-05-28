@@ -82,7 +82,6 @@ class _TarefasScreenState extends State<TarefasScreen> {
           inicio: turma.inicio,
           termino: turma.termino,
           rota: '/chamada-detalhes',
-          page_context: context,
         );
       },
     );
