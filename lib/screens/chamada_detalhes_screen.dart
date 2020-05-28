@@ -9,6 +9,8 @@ class ChamadaDetalhesScreen extends StatefulWidget {
 }
 
 class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
+  final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,32 +33,74 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              ChamadaCard(
-                  'Vitor Rico',
-                  'RM80515',
-                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
-                  '3SIB'),
-              ChamadaCard(
-                  'Gabriel Petillo',
-                  'RM81238',
-                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
-                  '3SIB'),
-              ChamadaCard(
-                  'Jean Jacques',
-                  'RM80515',
-                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
-                  '3SIB'),
-              ChamadaCard(
-                  'Vinicius Mota',
-                  'RM81238',
-                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
-                  '3SIB'),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: RaisedButton(
-                    onPressed: null,
-                    child: const Text('Salvar',
-                        style: TextStyle(fontSize: 16, color: Colors.white))),
+              Form(
+                key: formKey,
+                child: Center(
+                  child: Column(
+                    children: <Widget>[
+                      ChamadaCard(
+                          'Vitor Rico',
+                          'RM80515',
+                          'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+                          '3SIB'),
+                      ChamadaCard(
+                          'Gabriel Petillo',
+                          'RM81238',
+                          'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+                          '3SIB'),
+                      ChamadaCard(
+                          'Jean Jacques',
+                          'RM80515',
+                          'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+                          '3SIB'),
+                      ChamadaCard(
+                          'Vinicius Mota',
+                          'RM81238',
+                          'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+                          '3SIB'),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: RaisedButton(
+                            onPressed: null,
+                            child: const Text('Salvar',
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.white))),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: RaisedButton(
+                          child: Text(
+                            "Salvar",
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
+                          onPressed: () {
+                            if (formKey.currentState.validate()) {
+                              formKey.currentState.save();
+
+                              //CursoRepository().createRaw(cursoModel);
+                              //CursoService().create(cursoModel);
+                              print("asjkndfkasjdnhjdnasjdbjasbdasjlbd");
+                              var mensagem = ' cadastrado com sucesso!';
+
+                              Navigator.pop(
+                                context,
+                                mensagem,
+                              );
+                            } else {
+                              scaffoldKey.currentState.showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Não foi possível gravar o curso.',
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               SizedBox(height: 24),
               FutureBuilder<List>(

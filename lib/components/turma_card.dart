@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/screens/chamada_detalhes_screen.dart';
 
 class TurmaCard extends StatelessWidget {
   final int id;
@@ -8,7 +9,6 @@ class TurmaCard extends StatelessWidget {
   final String inicio;
   final String termino;
   final String rota;
-  final BuildContext page_context;
 
   const TurmaCard({
     this.id,
@@ -18,7 +18,6 @@ class TurmaCard extends StatelessWidget {
     this.inicio,
     this.termino,
     this.rota,
-    this.page_context,
   });
 
   @override
@@ -67,11 +66,10 @@ class TurmaCard extends StatelessWidget {
             size: 30.0,
           ),
           onTap: () {
-            Navigator.pushNamed(
-              page_context,
-              rota,
-              arguments: id,
-            );
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new ChamadaDetalhesScreen()));
           },
         ),
       ),
