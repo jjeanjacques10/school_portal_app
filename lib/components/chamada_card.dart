@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class ChamadaCard extends StatefulWidget {
   final String nome;
-
   final String rm;
   final String foto;
   final String sala;

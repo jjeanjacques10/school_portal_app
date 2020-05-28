@@ -31,41 +31,6 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              TarefasCard(
-                  'Vitor Rico',
-                  'RM80515',
-                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
-                  '3SIB'),
-              TarefasCard(
-                  'Gabriel Petillo',
-                  'RM81238',
-                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
-                  '3SIB'),
-              TarefasCard(
-                  'Jean Jacques',
-                  'RM80515',
-                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
-                  '3SIB'),
-              TarefasCard(
-                  'Vinicius Mota',
-                  'RM81238',
-                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
-                  '3SIB'),
-              TarefasCard(
-                  'Gabriel Petillo',
-                  'RM81238',
-                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
-                  '3SIB'),
-              TarefasCard(
-                  'Jean Jacques',
-                  'RM80515',
-                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
-                  '3SIB'),
-              TarefasCard(
-                  'Vinicius Mota',
-                  'RM81238',
-                  'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
-                  '3SIB'),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: RaisedButton(
