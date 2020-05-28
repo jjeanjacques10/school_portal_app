@@ -16,19 +16,17 @@ class ChamadaRepository {
       "ChamadaModel",
       columns: [
         "id",
-        "presente",
         "data",
-        "rmAluno",
         "idDisciplinaTurma",
       ],
     );
     //Converte a lista de Maps para Lista de Cursos
-    List<ChamadaModel> listaProfessores = new List<ChamadaModel>();
+    List<ChamadaModel> listaChamada = new List<ChamadaModel>();
     for (Map i in result) {
-      listaProfessores.add(ChamadaModel.fromMap(i));
+      listaChamada.add(ChamadaModel.fromMap(i));
     }
 
-    return listaProfessores;
+    return listaChamada;
   }
 
   Future<int> create(ChamadaModel chamadaModel) async {

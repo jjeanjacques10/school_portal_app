@@ -43,8 +43,6 @@ class _TarefasScreenState extends State<TarefasScreen> {
                   ),
                 ],
               ),
-              TurmaCard('nome', 'disciplina', 'horario', 'inicio', 'termino',
-                  '/login'),
               SizedBox(height: 24),
               FutureBuilder<List>(
                 builder: (context, snapshot) {

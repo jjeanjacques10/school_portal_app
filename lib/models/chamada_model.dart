@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:school_portal_app/models/disciplina_model.dart';
+
 class ChamadaModel {
   int id;
   String data;
-  int idDisciplinaTurma;
+  DisciplinaModel idDisciplinaTurma;
 
   ChamadaModel({
     this.id,
