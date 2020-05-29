@@ -26,7 +26,7 @@ class _TarefasScreenState extends State<TarefasScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
                 child: Text(
-                  'Chamada',
+                  'Tarefas',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       color: Colors.pink,
