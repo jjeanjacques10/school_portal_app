@@ -48,7 +48,7 @@ this command or select **Run and Debug**
 ## Team
 
 - Jean Jacques
-- Vini Mota
+- [Vini Mota](https://github.com/ferpakill)
 - Gabriel Petillo
 - Vitor Rico
 
