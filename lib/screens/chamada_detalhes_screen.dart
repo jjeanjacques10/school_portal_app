@@ -42,6 +42,22 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
                     child: SizedBox(
                   child: futuro(),
                 )),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: RaisedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          color: Colors.grey,
+                          child: const Text('Voltar',
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.white))),
+                    ),
+                  ],
+                ),
               ],
             ),
           )),
@@ -54,7 +70,6 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data.length > 0) {
-            print('hjvashfashf');
             return buildListView(snapshot.data);
           } else {
             return Center(
@@ -76,7 +91,7 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
       itemCount: alunos == null ? 0 : alunos.length,
       itemBuilder: (BuildContext ctx, int index) {
         ChamadaAluno aluno = alunos[index];
-      
+
         return ChamadaCard(
           aluno,
         );
