@@ -33,7 +33,12 @@ class _ChamadaCardState extends State<ChamadaCard> {
           color: Colors.pink,
         ),
         child: ListTile(
-          leading: Image.network(widget.foto),
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(100.0),
+            child: Image.network(
+              widget.foto,
+            ),
+          ),
           contentPadding:
               EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
           title: Text(
