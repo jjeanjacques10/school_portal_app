@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_portal_app/screens/chamada_detalhes_screen.dart';
+import 'package:school_portal_app/screens/tarefas_detalhes_screen.dart';
 
 class TurmaCard extends StatelessWidget {
   final int id;
@@ -10,7 +11,8 @@ class TurmaCard extends StatelessWidget {
   final String termino;
   final String rota;
 
-  const TurmaCard({
+  const TurmaCard(
+    BuildContext context, {
     this.id,
     this.nome,
     this.disciplina,
@@ -21,7 +23,7 @@ class TurmaCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext ctx) {
     return Card(
       elevation: 12.0,
       margin: new EdgeInsets.symmetric(
@@ -66,10 +68,17 @@ class TurmaCard extends StatelessWidget {
             size: 30.0,
           ),
           onTap: () {
-            Navigator.push(
-                context,
-                new MaterialPageRoute(
-                    builder: (context) => new ChamadaDetalhesScreen()));
+            if (rota == "/chamada-detalhes") {
+              Navigator.push(
+                  ctx,
+                  new MaterialPageRoute(
+                      builder: (context) => new ChamadaDetalhesScreen()));
+            } else {
+              Navigator.push(
+                  ctx,
+                  new MaterialPageRoute(
+                      builder: (context) => new TarefasDetalhesScreen()));
+            }
           },
         ),
       ),

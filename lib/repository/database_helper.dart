@@ -1,4 +1,5 @@
 import 'package:path/path.dart';
+import 'package:school_portal_app/models/chamada_aluno.dart';
 import 'package:school_portal_app/models/professor_model.dart';
 import 'package:school_portal_app/models/turma_model.dart';
 import 'package:sqflite/sqflite.dart';
@@ -116,7 +117,7 @@ class DatabaseHelper {
         FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
         FOREIGN KEY(idTarefas) REFERENCES TarefasModel(id)
       );
-            ''',
+      ''',
     );
     await database.execute(
       '''
@@ -129,7 +130,19 @@ class DatabaseHelper {
         FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
         FOREIGN KEY(idDisciplinaTurma) REFERENCES DisciplinaTurma(id)
       );
-     
+      ''',
+    );
+
+    await database.execute(
+      '''
+      CREATE TABLE ChamadaAluno(
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        nome TEXT,
+        foto TEXT,
+        rmAluno TEXT,
+        presente INTEGER DEFAULT 0,
+        turma TEXT
+      );
       ''',
     );
 
@@ -148,6 +161,7 @@ class DatabaseHelper {
           inicio: '8:00',
           termino: '9:40',
         ).toMap());
+
     await database.insert(
         "TurmaModel",
         new TurmaModel(
@@ -158,6 +172,7 @@ class DatabaseHelper {
           inicio: '8:00',
           termino: '9:40',
         ).toMap());
+
     await database.insert(
         "TurmaModel",
         new TurmaModel(
@@ -169,6 +184,53 @@ class DatabaseHelper {
           termino: '9:40',
         ).toMap());
 
+    await database.insert(
+        "ChamadaAluno",
+        new ChamadaAluno(
+          id: 1,
+          nome: 'Vitor Rico',
+          foto:
+              'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+          rmAluno: 'RM80515',
+          presente: 1,
+          turma: '3SIB',
+        ).toMap());
+
+    await database.insert(
+        "ChamadaAluno",
+        new ChamadaAluno(
+          id: 2,
+          nome: 'Vinicius Mota',
+          foto:
+              'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+          rmAluno: 'RM81238',
+          presente: 1,
+          turma: '3SIB',
+        ).toMap());
+
+    await database.insert(
+        "ChamadaAluno",
+        new ChamadaAluno(
+          id: 3,
+          nome: 'Gabriel Petillo',
+          foto:
+              'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+          rmAluno: 'RM81238',
+          presente: 0,
+          turma: '3SIB',
+        ).toMap());
+
+    await database.insert(
+        "ChamadaAluno",
+        new ChamadaAluno(
+          id: 4,
+          nome: 'Jean Jacques',
+          foto:
+              'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+          rmAluno: 'RM81524',
+          presente: 0,
+          turma: '3SIB',
+        ).toMap());
 /*
     await database.insert("AlunoModel",
         new AlunoModel(rm: "85132", nome: "Jean", foto: "foto.png",idTurma: 1).toMap());

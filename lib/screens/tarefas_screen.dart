@@ -75,13 +75,14 @@ class _TarefasScreenState extends State<TarefasScreen> {
         TurmaModel turma = turmas[index];
 
         return TurmaCard(
+          context,
           id: turma.id,
           nome: turma.nome,
           disciplina: turma.disciplina,
           horario: turma.horario,
           inicio: turma.inicio,
           termino: turma.termino,
-          rota: '/chamada-detalhes',
+          rota: '/tarefas-detalhes',
         );
       },
     );

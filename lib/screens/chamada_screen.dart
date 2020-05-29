@@ -36,7 +36,7 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
               ),
               Expanded(
                   child: SizedBox(
-                child: futuro(),
+                child: futuro(context),
               )),
             ],
           ),
@@ -45,13 +45,13 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
     );
   }
 
-  Widget futuro() {
+  Widget futuro(BuildContext context) {
     return FutureBuilder<List>(
       future: turmaRepository.findAll(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data.length > 0) {
-            return buildListView(snapshot.data);
+            return buildListView(context, snapshot.data);
             //return ItemCard('Desenvolvimento Cross Platform', '3SIA','11:40', '304 un. 2');
           } else {
             return Center(
@@ -67,7 +67,7 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
     );
   }
 
-  ListView buildListView(List<TurmaModel> turmas) {
+  ListView buildListView(BuildContext context, List<TurmaModel> turmas) {
     print(turmas.length);
     return ListView.builder(
       itemCount: turmas == null ? 0 : turmas.length,
@@ -75,6 +75,7 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
         TurmaModel turma = turmas[index];
 
         return TurmaCard(
+            context,
             id: turma.id,
             nome: turma.nome,
             disciplina: turma.disciplina,
