@@ -58,13 +58,26 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
                           'RM81238',
                           'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
                           '3SIB'),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: RaisedButton(
-                            onPressed: null,
-                            child: const Text('Salvar',
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.white))),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,                        
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: RaisedButton(
+                                onPressed: null,
+                                child: const Text('Salvar',
+                                    style: TextStyle(
+                                        fontSize: 16, color: Colors.white))),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: RaisedButton(
+                                onPressed: null,
+                                child: const Text('Voltar',
+                                    style: TextStyle(
+                                        fontSize: 16, color: Colors.white))),
+                          ),
+                        ],
                       ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
