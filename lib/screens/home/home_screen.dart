@@ -14,41 +14,6 @@ class _HomeScreenState extends State<HomeScreen> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.grey[50],
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: Text(
-            'FIAPP',
-            style: TextStyle(
-              color: Colors.pink,
-              fontWeight: FontWeight.w300
-            ),
-          ),
-          centerTitle: true,
-          actions: [
-            PopupMenuButton<Choice>(
-              onSelected: _select,
-              itemBuilder: (BuildContext context) {
-                return choices.map((Choice choice) {
-                  return PopupMenuItem<Choice>(
-                    value: choice,
-                    child: Row(
-                      children: [
-                        Icon(
-                          choice.icon,
-                          color: Colors.pink,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Text(choice.title),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList();
-              },
-            ),
-          ],
-        ),
         body: Padding(
           padding: const EdgeInsets.only(top: 0),
           child: Column(
@@ -56,13 +21,27 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
-                child: Text(
-                  'Olá, Flávio Moreni',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Colors.pink,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100.0),
+                        child: Image.network(
+                          'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+                          width: 100,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Olá, Flávio Moreni',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.pink,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
               ),
               Row(
@@ -118,11 +97,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       ],
                     ),
-                    trailing: Icon(
-                      Icons.keyboard_arrow_right,
-                      color: Colors.white,
-                      size: 30.0,
-                    ),
                     onTap: () {
                       //navegarTelaCursoDetalhes(context, curso);
                     },
@@ -166,11 +140,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ],
-                    ),
-                    trailing: Icon(
-                      Icons.keyboard_arrow_right,
-                      color: Colors.white,
-                      size: 30.0,
                     ),
                     onTap: () {
                       //navegarTelaCursoDetalhes(context, curso);

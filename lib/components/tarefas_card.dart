@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 
 class TarefasCard extends StatefulWidget {
   final String nome;
-
   final String rm;
   final String foto;
   final String sala;
 
-  const TarefasCard(
+  const TarefasCard({
     this.nome,
     this.rm,
     this.foto,
     this.sala,
-  );
+  });
 
   @override
   _TarefasCardState createState() => _TarefasCardState();

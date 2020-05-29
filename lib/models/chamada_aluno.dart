@@ -1,15 +1,20 @@
 import 'dart:convert';
 
-
 class ChamadaAluno {
   int id;
-  int presente;
+  String nome;
+  String foto;
   String rmAluno;
+  int presente;
+  String turma;
 
   ChamadaAluno({
     this.id,
-    this.presente,
+    this.nome,
+    this.foto,
     this.rmAluno,
+    this.presente,
+    this.turma,
   });
 
   factory ChamadaAluno.fromJson(String str) =>
@@ -19,13 +24,19 @@ class ChamadaAluno {
 
   factory ChamadaAluno.fromMap(Map<String, dynamic> json) => ChamadaAluno(
         id: json["id"],
-        presente: json["presente"],
+        nome: json["nome"],
+        foto: json["foto"],
         rmAluno: json["rmAluno"],
+        presente: json["presente"],
+        turma: json["turma"],
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
-        "presente": presente,
+        "nome": nome,
+        "foto": foto,
         "rmAluno": rmAluno,
+        "presente": presente,
+        "turma": turma,
       };
 }

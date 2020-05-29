@@ -15,8 +15,9 @@ class TurmaRepository {
     var result = await connection.query(
       "TurmaModel",
       columns: [
+        "id",
         "nome",
-        "ano",
+        "disciplina",
         "horario",
         "inicio",
         "termino",
@@ -24,11 +25,11 @@ class TurmaRepository {
     );
 
     //Converte a lista de Maps para Lista de Cursos
-    List<TurmaModel> listaProfessores = new List<TurmaModel>();
+    List<TurmaModel> listaTurmas = new List<TurmaModel>();
     for (Map i in result) {
-      listaProfessores.add(TurmaModel.fromMap(i));
+      listaTurmas.add(TurmaModel.fromMap(i));
     }
 
-    return listaProfessores;
+    return listaTurmas;
   }
 }

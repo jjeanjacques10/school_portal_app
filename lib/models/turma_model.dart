@@ -3,19 +3,18 @@ import 'dart:convert';
 class TurmaModel {
   int id;
   String nome;
-  String ano;
+  String disciplina;
   String horario;
   String inicio;
   String termino;
-  
 
   TurmaModel({
     this.id,
     this.nome,
-    this.ano,
+    this.disciplina,
     this.horario,
     this.inicio,
-    this.termino
+    this.termino,
   });
 
   factory TurmaModel.fromJson(String str) =>
@@ -26,7 +25,7 @@ class TurmaModel {
   factory TurmaModel.fromMap(Map<String, dynamic> json) => TurmaModel(
         id: json["id"],
         nome: json["nome"],
-        ano: json["ano"],
+        disciplina: json["disciplina"],
         horario: json["horario"],
         inicio: json["inicio"],
         termino: json["termino"],
@@ -35,9 +34,9 @@ class TurmaModel {
   Map<String, dynamic> toMap() => {
         "id": id,
         "nome": nome,
-        "ano": ano,
-        "horario":horario,
-        "inicio":inicio,
-        "termino":termino,
+        "disciplina": disciplina,
+        "horario": horario,
+        "inicio": inicio,
+        "termino": termino,
       };
 }

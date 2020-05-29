@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:school_portal_app/models/professor_model.dart';
 import 'package:school_portal_app/screens/chamada_screen.dart';
-import 'package:school_portal_app/screens/home_screen.dart';
+import 'package:school_portal_app/screens/home/home_screen.dart';
 import 'package:school_portal_app/screens/tarefas_screen.dart';
 
 class MenuScreen extends StatefulWidget {

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/screens/chamada_detalhes_screen.dart';
+import 'package:school_portal_app/screens/tarefas_detalhes_screen.dart';
 
 class TurmaCard extends StatelessWidget {
+  final int id;
   final String nome;
   final String disciplina;
   final String horario;
@@ -8,11 +11,19 @@ class TurmaCard extends StatelessWidget {
   final String termino;
   final String rota;
 
-  const TurmaCard(this.nome, this.disciplina, this.horario, this.inicio,
-      this.termino, this.rota);
+  const TurmaCard(
+    BuildContext context, {
+    this.id,
+    this.nome,
+    this.disciplina,
+    this.horario,
+    this.inicio,
+    this.termino,
+    this.rota,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext ctx) {
     return Card(
       elevation: 12.0,
       margin: new EdgeInsets.symmetric(
@@ -27,7 +38,7 @@ class TurmaCard extends StatelessWidget {
           contentPadding:
               EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
           title: Text(
-            nome,
+            disciplina,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -41,7 +52,7 @@ class TurmaCard extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 0),
                   child: Text(
-                    "3SIA | 10h00 | 504 un. 2",
+                    "${nome} | ${horario} | ${inicio} | ${termino}",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,
@@ -57,10 +68,17 @@ class TurmaCard extends StatelessWidget {
             size: 30.0,
           ),
           onTap: () {
-            Navigator.pushNamed(
-              context,
-              rota,
-            );
+            if (rota == "/chamada-detalhes") {
+              Navigator.push(
+                  ctx,
+                  new MaterialPageRoute(
+                      builder: (context) => new ChamadaDetalhesScreen()));
+            } else {
+              Navigator.push(
+                  ctx,
+                  new MaterialPageRoute(
+                      builder: (context) => new TarefasDetalhesScreen()));
+            }
           },
         ),
       ),

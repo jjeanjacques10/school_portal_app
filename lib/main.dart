@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:school_portal_app/screens/chamada_detalhes_screen.dart';
 import 'package:school_portal_app/screens/chamada_screen.dart';
-import 'package:school_portal_app/screens/home_screen.dart';
+import 'package:school_portal_app/screens/home/home_screen.dart';
 import 'package:school_portal_app/screens/login_screen.dart';
 import 'package:school_portal_app/screens/menu_screen.dart';
 import 'package:school_portal_app/screens/professor/editar_professor.dart';
