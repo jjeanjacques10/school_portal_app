@@ -21,13 +21,27 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
-                child: Text(
-                  'Olá, Flávio Moreni',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Colors.pink,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100.0),
+                        child: Image.network(
+                          'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+                          width: 100,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Olá, Flávio Moreni',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.pink,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
               ),
               Row(
