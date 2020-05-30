@@ -38,12 +38,30 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
                   child: SizedBox(
                 child: futuro(),
               )),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: RaisedButton(
-                    onPressed: null,
-                    child: const Text('Salvar',
-                        style: TextStyle(fontSize: 16, color: Colors.white))),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: RaisedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        color: Colors.grey,
+                        child: const Text('Voltar',
+                            style:
+                                TextStyle(fontSize: 16, color: Colors.white))),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: RaisedButton(
+                        onPressed: null,
+                        color: Colors.grey,
+                        child: const Text('Salvar',
+                            style:
+                                TextStyle(fontSize: 16, color: Colors.white))),
+                  ),
+                ],
               ),
             ],
           ),
