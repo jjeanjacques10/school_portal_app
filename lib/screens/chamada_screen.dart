@@ -68,7 +68,7 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
   }
 
   ListView buildListView(BuildContext context, List<TurmaModel> turmas) {
-    print(turmas.length);
+    
     return ListView.builder(
       itemCount: turmas == null ? 0 : turmas.length,
       itemBuilder: (BuildContext ctx, int index) {

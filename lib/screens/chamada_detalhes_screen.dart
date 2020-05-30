@@ -86,7 +86,7 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
   }
 
   ListView buildListView(List<ChamadaAluno> alunos) {
-    print(alunos.length);
+    
     return ListView.builder(
       itemCount: alunos == null ? 0 : alunos.length,
       itemBuilder: (BuildContext ctx, int index) {

@@ -68,7 +68,7 @@ class _TarefasScreenState extends State<TarefasScreen> {
   }
 
   ListView buildListView(List<TurmaModel> turmas) {
-    print(turmas.length);
+    
     return ListView.builder(
       itemCount: turmas == null ? 0 : turmas.length,
       itemBuilder: (BuildContext ctx, int index) {
