@@ -68,21 +68,14 @@ class _TarefasScreenState extends State<TarefasScreen> {
   }
 
   ListView buildListView(List<TurmaModel> turmas) {
-    print(turmas.length);
     return ListView.builder(
       itemCount: turmas == null ? 0 : turmas.length,
       itemBuilder: (BuildContext ctx, int index) {
         TurmaModel turma = turmas[index];
 
         return TurmaCard(
-          context,
-          id: turma.id,
-          nome: turma.nome,
-          disciplina: turma.disciplina,
-          horario: turma.horario,
-          inicio: turma.inicio,
-          termino: turma.termino,
-          rota: '/tarefas-detalhes',
+          turmaModel: turma,
+          tipo: 'tarefas',
         );
       },
     );

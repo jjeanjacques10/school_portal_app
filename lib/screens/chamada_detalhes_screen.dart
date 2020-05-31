@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:school_portal_app/components/chamada_card.dart';
 import 'package:school_portal_app/models/chamada_aluno.dart';
+import 'package:school_portal_app/models/turma_model.dart';
 import 'package:school_portal_app/repository/chamada_aluno_repository.dart';
+import 'package:intl/intl.dart';
 
 class ChamadaDetalhesScreen extends StatefulWidget {
   ChamadaDetalhesScreen({Key key}) : super(key: key);
@@ -12,12 +14,14 @@ class ChamadaDetalhesScreen extends StatefulWidget {
 
 class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
   ChamadaAlunoRepository chamadaAlunoRepository = new ChamadaAlunoRepository();
-
+  TurmaModel turmaModel;
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+    turmaModel = ModalRoute.of(context).settings.arguments;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -30,7 +34,7 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
                   child: Text(
-                    'Chamada | 3 SIA | 11/11/2019',
+                    '${turmaModel.disciplina} | ${turmaModel.nome} | ${getTodayDate()}',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         color: Colors.pink,
@@ -86,7 +90,6 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
   }
 
   ListView buildListView(List<ChamadaAluno> alunos) {
-    print(alunos.length);
     return ListView.builder(
       itemCount: alunos == null ? 0 : alunos.length,
       itemBuilder: (BuildContext ctx, int index) {
@@ -98,4 +101,10 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
       },
     );
   }
+}
+
+String getTodayDate() {
+  var now = new DateTime.now();
+  var formatter = new DateFormat('dd/MM/yyyy');
+  return formatter.format(now);
 }

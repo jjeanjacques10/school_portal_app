@@ -114,9 +114,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             resultLogin.then((professor) {
                               if (professor == null) {
-                                print("Erro");
+                                
                               } else {
-                                print(professor);
+                                
                                 Navigator.pushNamed(
                                   context,
                                   '/menu',
