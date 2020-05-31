@@ -28,11 +28,10 @@ class _TarefasCardState extends State<TarefasCard> {
           color: Colors.pink,
         ),
         child: ListTile(
-          
           contentPadding:
               EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
           title: Text(
-            widget.tarefa.titulo,
+            '${widget.tarefa.tipo} ${widget.tarefa.titulo}',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -46,7 +45,7 @@ class _TarefasCardState extends State<TarefasCard> {
                 child: Padding(
                   padding: EdgeInsets.only(left: 0),
                   child: Text(
-                    "${widget.tarefa.data}",
+                    "${widget.tarefa.data}" ,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,
