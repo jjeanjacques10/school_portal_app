@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/components/chamada_card.dart';
 import 'package:school_portal_app/components/tarefas_card.dart';
-import 'package:school_portal_app/models/tarefas_aluno.dart';
+import 'package:school_portal_app/models/chamada_aluno.dart';
 import 'package:school_portal_app/models/tarefas_model.dart';
 import 'package:school_portal_app/models/turma_model.dart';
-import 'package:school_portal_app/repository/turma_repository.dart';
+import 'package:school_portal_app/repository/chamada_aluno_repository.dart';
+import 'package:intl/intl.dart';
 import 'package:school_portal_app/repository/tarefas_repository.dart';
 
 class TarefasDetalhesScreen extends StatefulWidget {
@@ -14,8 +16,10 @@ class TarefasDetalhesScreen extends StatefulWidget {
 }
 
 class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
-  TarefasRepository tarefasRepository = TarefasRepository();
+  TarefasRepository tarefaRepository = new TarefasRepository();
   TurmaModel turmaModel;
+  final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,69 +28,60 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        resizeToAvoidBottomPadding: false,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: ListView(
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
-                child: Text(
-                  'Tarefas | ${turmaModel.nome} | 30/05/2020',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.pink,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500),
+          resizeToAvoidBottomPadding: false,
+          body: Padding(
+            padding: const EdgeInsets.only(top: 0),
+            child: Column(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
+                  child: Text(
+                    '${turmaModel.disciplina} | ${turmaModel.nome} | ${getTodayDate()}',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        color: Colors.pink,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
-              ),
-              Expanded(
+                Expanded(
                   child: SizedBox(
-                child: tarefasList(turmaModel),
-              )),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: RaisedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        color: Colors.grey,
-                        child: const Text('Voltar',
-                            style:
-                                TextStyle(fontSize: 16, color: Colors.white))),
+                    child: chamadaList(turmaModel),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: RaisedButton(
-                        onPressed: null,
-                        color: Colors.grey,
-                        child: const Text('Salvar',
-                            style:
-                                TextStyle(fontSize: 16, color: Colors.white))),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: RaisedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          color: Colors.grey,
+                          child: const Text('Voltar',
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.white))),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )),
     );
   }
 
-  Widget tarefasList(TurmaModel turmaModel) {
+  Widget chamadaList(TurmaModel turmaModel) {
     return FutureBuilder<List>(
-      future: tarefasRepository.findAll(),
+      future: tarefaRepository.findAll(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data.length > 0) {
             return buildListView(snapshot.data);
           } else {
             return Center(
-              child: Text("Nenhuma tarefas cadastradas!"),
+              child: Text("Nenhum aluno cadastrado!"),
             );
           }
         } else {
@@ -110,4 +105,10 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
       },
     );
   }
+}
+
+String getTodayDate() {
+  var now = new DateTime.now();
+  var formatter = new DateFormat('dd/MM/yyyy');
+  return formatter.format(now);
 }

@@ -57,7 +57,7 @@ class _TarefasCardState extends State<TarefasCard> {
             ],
           ),
           trailing: Container(
-            width: 30.0,
+            width: 50.0,
             child: TextField(
               keyboardType: TextInputType.numberWithOptions(decimal: true),
               style: TextStyle(

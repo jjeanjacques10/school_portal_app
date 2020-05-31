@@ -7,7 +7,7 @@ class TurmaCard extends StatelessWidget {
   final TurmaModel turmaModel;
   final String tipo;
 
-  const TurmaCard( {
+  const TurmaCard({
     this.turmaModel,
     this.tipo,
   });
@@ -70,9 +70,14 @@ class TurmaCard extends StatelessWidget {
               );
             } else {
               Navigator.push(
-                  ctx,
-                  new MaterialPageRoute(
-                      builder: (context) => new TarefasDetalhesScreen()));
+                ctx,
+                new MaterialPageRoute(
+                  builder: (context) => new TarefasDetalhesScreen(),
+                  settings: RouteSettings(
+                    arguments: turmaModel,
+                  ),
+                ),
+              );
             }
           },
         ),

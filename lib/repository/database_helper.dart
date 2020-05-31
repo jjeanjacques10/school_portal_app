@@ -152,7 +152,7 @@ class DatabaseHelper {
     await database.insert("ProfessorModel",
         new ProfessorModel(rm: "123", nome: "Flavio", senha: "123").toMap());
     await database.insert("ProfessorModel",
-        new ProfessorModel(rm: "1234", nome: "Pedro", senha: "123").toMap());
+        new ProfessorModel(rm: "Pedro", nome: "Pedro", senha: "123").toMap());
 
     await database.insert(
         "TurmaModel",

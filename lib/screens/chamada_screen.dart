@@ -36,7 +36,7 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
               ),
               Expanded(
                   child: SizedBox(
-                child: futuro(context),
+                child: futuro(),
               )),
             ],
           ),
@@ -45,14 +45,13 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
     );
   }
 
-  Widget futuro(BuildContext context) {
+  Widget futuro() {
     return FutureBuilder<List>(
       future: turmaRepository.findAll(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data.length > 0) {
-            return buildListView(context, snapshot.data);
-            //return ItemCard('Desenvolvimento Cross Platform', '3SIA','11:40', '304 un. 2');
+            return buildListView(snapshot.data);
           } else {
             return Center(
               child: Text("Nenhum curso cadastrado!"),
@@ -67,7 +66,7 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
     );
   }
 
-  ListView buildListView(BuildContext context, List<TurmaModel> turmas) {
+  ListView buildListView(List<TurmaModel> turmas) {
     return ListView.builder(
       itemCount: turmas == null ? 0 : turmas.length,
       itemBuilder: (BuildContext ctx, int index) {

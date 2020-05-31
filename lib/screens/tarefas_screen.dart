@@ -3,8 +3,6 @@ import 'package:school_portal_app/components/turma_card.dart';
 import 'package:school_portal_app/models/turma_model.dart';
 import 'package:school_portal_app/repository/turma_repository.dart';
 import 'package:school_portal_app/screens/cadastro_tarefas_screen.dart';
-import 'package:school_portal_app/screens/chamada_screen.dart';
-import 'package:school_portal_app/screens/tarefas_detalhes_screen.dart';
 
 class TarefasScreen extends StatefulWidget {
   TarefasScreen({Key key}) : super(key: key);
@@ -69,7 +67,6 @@ class _TarefasScreenState extends State<TarefasScreen> {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data.length > 0) {
             return buildListView(snapshot.data);
-            //return ItemCard('Desenvolvimento Cross Platform', '3SIA','11:40', '304 un. 2');
           } else {
             return Center(
               child: Text("Nenhum curso cadastrado!"),
