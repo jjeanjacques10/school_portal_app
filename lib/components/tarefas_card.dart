@@ -45,7 +45,7 @@ class _TarefasCardState extends State<TarefasCard> {
                 child: Padding(
                   padding: EdgeInsets.only(left: 0),
                   child: Text(
-                    "${widget.tarefa.data}" ,
+                    "${widget.tarefa.data}",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,
@@ -56,12 +56,25 @@ class _TarefasCardState extends State<TarefasCard> {
             ],
           ),
           trailing: Container(
-            width: 50.0,
-            child: TextField(
+            width: 40.0,
+            child: TextField(              
+              decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+                border: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+              ),
               keyboardType: TextInputType.numberWithOptions(decimal: true),
+              textAlign: TextAlign.center,
+              cursorColor: Colors.white,
               style: TextStyle(
                 fontSize: 20.0,
-                height: 2.0,
+                height: 1.0,
                 color: Colors.white,
               ),
             ),
