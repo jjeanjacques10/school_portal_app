@@ -136,12 +136,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                     ),
-                    RaisedButton(onPressed: () {
+                    /*RaisedButton(onPressed: () {
                       Navigator.pushNamed(
                         context,
                         '/novo-professor',
                       );
-                    })
+                    })*/
                   ],
                 ),
               ),
