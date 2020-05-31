@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:school_portal_app/models/professor_model.dart';
 import 'package:school_portal_app/repository/professor_repository.dart';
-
+import 'package:intl/intl.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 class CadastroTarefasScreen extends StatefulWidget {
   CadastroTarefasScreen({Key key}) : super(key: key);
@@ -17,7 +18,11 @@ class _CadastroTarefasScreenState extends State<CadastroTarefasScreen> {
   ProfessorRepository professorRepository = ProfessorRepository();
   ProfessorModel professorModel = ProfessorModel();
 
-  String dropdownValue;
+  String dropdownTipo;
+  String dropdownTurma;
+  String dropdownDisciplina;
+
+  final format = DateFormat("dd/MM/yyyy");
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -65,6 +70,81 @@ class _CadastroTarefasScreenState extends State<CadastroTarefasScreen> {
                         color: Colors.pink,
                       ),
                     ),
+                    DropdownButtonFormField<String>(
+                      decoration: new InputDecoration(
+                          icon: const Icon(Icons.list),
+                          fillColor: Colors.white,
+                          hintText: 'Selecione o tipo da tarefa',
+                          labelText: "Tipo"),
+                      value: dropdownTipo,
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 20,
+                      isExpanded: true,
+                      elevation: 16,
+                      iconEnabledColor: Colors.pink,
+                      style: TextStyle(color: Colors.grey),
+                      onChanged: (String newValue) {
+                        setState(() {
+                          dropdownTipo = newValue;
+                        });
+                      },
+                      items: ['Prova', 'Trabalho']
+                          .map((label) => DropdownMenuItem(
+                                child: Text(label),
+                                value: label,
+                              ))
+                          .toList(),
+                    ),
+                    DropdownButtonFormField<String>(
+                      decoration: new InputDecoration(
+                          icon: const Icon(Icons.group),
+                          fillColor: Colors.white,
+                          hintText: 'Selecione a turma',
+                          labelText: "Turma"),
+                      value: dropdownTurma,
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 20,
+                      isExpanded: true,
+                      elevation: 16,
+                      iconEnabledColor: Colors.pink,
+                      style: TextStyle(color: Colors.grey),
+                      onChanged: (String newValue) {
+                        setState(() {
+                          dropdownTurma = newValue;
+                        });
+                      },
+                      items: ['3SIA', '3SIT', '3SIR']
+                          .map((label) => DropdownMenuItem(
+                                child: Text(label),
+                                value: label,
+                              ))
+                          .toList(),
+                    ),
+                    DropdownButtonFormField<String>(
+                      decoration: new InputDecoration(
+                          icon: const Icon(Icons.school),
+                          fillColor: Colors.white,
+                          hintText: 'Selecione a disciplina',
+                          labelText: "Disciplina"),
+                      value: dropdownDisciplina,
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 20,
+                      isExpanded: true,
+                      elevation: 16,
+                      iconEnabledColor: Colors.pink,
+                      style: TextStyle(color: Colors.grey),
+                      onChanged: (String newValue) {
+                        setState(() {
+                          dropdownDisciplina = newValue;
+                        });
+                      },
+                      items: ['Flutter', 'Redes', 'Kotlin']
+                          .map((label) => DropdownMenuItem(
+                                child: Text(label),
+                                value: label,
+                              ))
+                          .toList(),
+                    ),
                     TextFormField(
                       decoration: new InputDecoration(
                           icon: const Icon(Icons.book),
@@ -81,71 +161,21 @@ class _CadastroTarefasScreenState extends State<CadastroTarefasScreen> {
                         professorModel.nome = value;
                       },
                     ),
-                    DropdownButtonFormField<String>(
-                      value: dropdownValue,
-                      icon: Icon(Icons.arrow_drop_down),
-                      iconSize: 20,
-                      isExpanded: true,
-                      elevation: 16,
-                      iconEnabledColor: Colors.pink,
-                      hint: Row(
-                        children: [
-                          Icon(
-                            Icons.view_list,
-                            color: Colors.grey,
-                          ),
-                          Text('Tipo de Tarefas'),
-                        ],
-                      ),
-                      style: TextStyle(color: Colors.grey),
-                      onChanged: (String newValue) {
-                        setState(() {
-                          dropdownValue = newValue;
-                        });
-                      },
-                      items: ['Prova', 'Trabalho']
-                          .map((label) => DropdownMenuItem(
-                                child: Text(label),
-                                value: label,
-                              ))
-                          .toList(),
-                    ),
-                    TextFormField(
-                      obscureText: true,
+                    DateTimeField(
                       decoration: new InputDecoration(
-                        icon: const Icon(Icons.date_range),
-                        fillColor: Colors.white,
-                        hintText: 'Digite a data de entrega',
-                        labelText: 'Entrega',
-                      ),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'Digite a senha';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        professorModel.senha = value;
+                          icon: const Icon(Icons.date_range),
+                          fillColor: Colors.white,
+                          hintText: 'Escolha a data',
+                          labelText: "Data"),
+                      format: format,
+                      onShowPicker: (context, currentValue) {
+                        return showDatePicker(
+                            context: context,
+                            firstDate: DateTime(1900),
+                            initialDate: currentValue ?? DateTime.now(),
+                            lastDate: DateTime(2100));
                       },
                     ),
-/*                    FlatButton(
-                        onPressed: () {
-                          DatePicker.showDatePicker(context,
-                              showTitleActions: true,
-                              minTime: DateTime(2018, 3, 5),
-                              maxTime: DateTime(2019, 6, 7), onChanged: (date) {
-                            print('change $date');
-                          }, onConfirm: (date) {
-                            print('confirm $date');
-                          },
-                              currentTime: DateTime.now(),
-                              locale: LocaleType.zh);
-                        },
-                        child: Text(
-                          'show date time picker (Chinese)',
-                          style: TextStyle(color: Colors.blue),
-                        )),
-*/
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: RaisedButton(
