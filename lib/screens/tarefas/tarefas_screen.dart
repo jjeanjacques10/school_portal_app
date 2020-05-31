@@ -23,38 +23,47 @@ class TarefasScreen extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
-                child: Text(
-                  'Tarefas',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Colors.pink,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500),
+                padding: const EdgeInsets.only(top: 30, bottom: 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(right: 10),
+                      child: Icon(
+                        Icons.library_books,
+                        color: Colors.pink,
+                        size: 30,
+                      ),
+                    ),
+                    Text(
+                      'Tarefas',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.pink,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(0),
-                child: RaisedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CadastroTarefasScreen()),
-                      );
-                    },
-                    color: Colors.grey,
-                    child: const Text('Adicionar nova tarefa',
-                        style: TextStyle(fontSize: 16, color: Colors.white))),
-              ),
               Expanded(
-                  child: SizedBox(
-                child: futuro(),
-              )),
+                child: SizedBox(
+                  child: futuro(),
+                ),
+              ),
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CadastroTarefasScreen()),
+              );
+            },
+            child: Icon(Icons.add),
+            backgroundColor: Colors.pinkAccent[700]),
       ),
     );
   }

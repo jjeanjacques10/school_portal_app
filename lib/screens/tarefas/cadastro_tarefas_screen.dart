@@ -152,7 +152,7 @@ class _CadastroTarefasScreenState extends State<CadastroTarefasScreen> {
                       decoration: new InputDecoration(
                           icon: const Icon(Icons.book),
                           fillColor: Colors.white,
-                          hintText: 'Digite o titulo da Tarefas',
+                          hintText: 'Digite o título da tarefa',
                           labelText: "Título"),
                       validator: (value) {
                         if (value.isEmpty) {
