@@ -86,14 +86,14 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
 
   Widget chamadaList(TurmaModel turmaModel) {
     return FutureBuilder<List>(
-      future: tarefaRepository.findAll(),
+      future: tarefaRepository.findTarefaTurma(turmaModel.nome),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data.length > 0) {
             return buildListView(snapshot.data);
           } else {
             return Center(
-              child: Text("Nenhum aluno cadastrado!"),
+              child: Text("Nenhuma Tarefa cadastrada!"),
             );
           }
         } else {
