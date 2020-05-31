@@ -85,11 +85,24 @@ class _TarefasCardState extends State<TarefasCard> {
                     width: 50.0,
                     child: TextFormField(
                       initialValue: widget.tarefa.nota.toString(),
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
                       keyboardType:
                           TextInputType.numberWithOptions(decimal: true),
+                      textAlign: TextAlign.center,
+                      cursorColor: Colors.white,
                       style: TextStyle(
                         fontSize: 20.0,
-                        height: 2.0,
+                        height: 1.0,
                         color: Colors.white,
                       ),
                       validator: (value) {
