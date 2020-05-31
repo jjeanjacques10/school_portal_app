@@ -28,7 +28,7 @@ class TurmaCard extends StatelessWidget {
           contentPadding:
               EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
           title: Text(
-            turmaModel.disciplina,
+            "${turmaModel.nome} - ${turmaModel.disciplina}",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -42,7 +42,7 @@ class TurmaCard extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 0),
                   child: Text(
-                    "${turmaModel.nome} | ${turmaModel.horario} | ${turmaModel.inicio} | ${turmaModel.termino}",
+                    "${turmaModel.horario}  |  ${turmaModel.inicio} - ${turmaModel.termino}",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,

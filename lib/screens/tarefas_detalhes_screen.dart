@@ -37,11 +37,23 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
                   child: Text(
-                    '${turmaModel.disciplina} | ${turmaModel.nome} | ${getTodayDate()}',
+                    'Tarefas',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         color: Colors.pink,
-                        fontSize: 25,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                  child: Text(
+                    '${turmaModel.disciplina} | ${turmaModel.nome} ',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 20,
                         fontWeight: FontWeight.w500),
                   ),
                 ),
