@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:school_portal_app/components/chamada_card.dart';
 import 'package:school_portal_app/components/tarefas_card.dart';
-import 'package:school_portal_app/models/chamada_aluno.dart';
 import 'package:school_portal_app/models/tarefas_model.dart';
 import 'package:school_portal_app/models/turma_model.dart';
-import 'package:school_portal_app/repository/chamada_aluno_repository.dart';
-import 'package:intl/intl.dart';
 import 'package:school_portal_app/repository/tarefas_repository.dart';
 
 class TarefasDetalhesScreen extends StatefulWidget {
@@ -29,6 +25,23 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           resizeToAvoidBottomPadding: false,
+          appBar: AppBar(
+            backgroundColor: Colors.black,
+            title: Text(
+              'FIAPP',
+              style: TextStyle(color: Colors.pink),
+            ),
+            centerTitle: true,
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.pink,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
           body: Padding(
             padding: const EdgeInsets.only(top: 0),
             child: Column(
@@ -62,22 +75,6 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
                     child: chamadaList(turmaModel),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: RaisedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          color: Colors.grey,
-                          child: const Text('Voltar',
-                              style: TextStyle(
-                                  fontSize: 16, color: Colors.white))),
-                    ),
-                  ],
-                ),
               ],
             ),
           )),
@@ -86,14 +83,14 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
 
   Widget chamadaList(TurmaModel turmaModel) {
     return FutureBuilder<List>(
-      future: tarefaRepository.findAll(),
+      future: tarefaRepository.findTarefaTurma(turmaModel.nome),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data.length > 0) {
             return buildListView(snapshot.data);
           } else {
             return Center(
-              child: Text("Nenhum aluno cadastrado!"),
+              child: Text("Nenhuma Tarefa cadastrada!"),
             );
           }
         } else {
@@ -117,10 +114,4 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
       },
     );
   }
-}
-
-String getTodayDate() {
-  var now = new DateTime.now();
-  var formatter = new DateFormat('dd/MM/yyyy');
-  return formatter.format(now);
 }

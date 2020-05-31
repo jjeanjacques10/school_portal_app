@@ -76,27 +76,7 @@ class DatabaseHelper {
       );
       ''',
     );
-    await database.execute(
-      '''
-      CREATE TABLE DisciplinaModel (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT,
-        rmProfessor TEXT,
-        FOREIGN KEY(rmProfessor) REFERENCES ProfessorModel(rm)
-      );
-      ''',
-    );
-    await database.execute(
-      '''
-      CREATE TABLE DisciplinaTurma(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        idDisciplina INTEGER,
-        idTurma INTEGER,
-        FOREIGN KEY(idDisciplina) REFERENCES DisciplinaModel(id),
-        FOREIGN KEY(idTurma) REFERENCES DisciplinaModel(id)
-      );
-      ''',
-    );
+
     await database.execute(
       '''
      CREATE TABLE TarefasModel(
@@ -105,33 +85,8 @@ class DatabaseHelper {
         tipo TEXT,
         turma TEXT,
         disciplina TEXT,
-        data TEXT
-      );
-      ''',
-    );
-
-    await database.execute(
-      '''
-      CREATE TABLE TarefasAluno(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        rmAluno TEXT,
-        idTarefas INTEGER,
-        FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
-        FOREIGN KEY(idTarefas) REFERENCES TarefasModel(id)
-      );
-      ''',
-    );
-
-    await database.execute(
-      '''
-      CREATE TABLE ChamadaModel(
-        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-        presente INTEGER DEFAULT 0,
         data TEXT,
-        rmAluno TEXT,
-        idDisciplinaTurma INTEGER,
-        FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
-        FOREIGN KEY(idDisciplinaTurma) REFERENCES DisciplinaTurma(id)
+        nota REAL DEFAULT 0
       );
       ''',
     );
@@ -256,28 +211,31 @@ class DatabaseHelper {
           turma: '3SIA',
           disciplina: 'Flutter',
           data: '11/02/2019',
+          nota: 0,
         ).toMap());
 
     await database.insert(
         "TarefasModel",
         new TarefasModel(
-          id: 2,
-          titulo: 'Prova Teste 2',
-          tipo: 'NAC',
-          turma: '3SIA',
-          disciplina: 'Flutter',
-          data: '11/02/2019',
-        ).toMap());
+                id: 2,
+                titulo: 'Prova Teste 2',
+                tipo: 'NAC',
+                turma: '3SIA',
+                disciplina: 'Flutter',
+                data: '11/02/2019',
+                nota: 10)
+            .toMap());
 
     await database.insert(
         "TarefasModel",
         new TarefasModel(
-          id: 3,
-          titulo: 'Prova Teste 3',
-          tipo: 'NAC',
-          turma: '3SIB',
-          disciplina: 'Flutter',
-          data: '11/02/2019',
-        ).toMap());
+                id: 3,
+                titulo: 'Prova Teste 3',
+                tipo: 'NAC',
+                turma: '3SIB',
+                disciplina: 'Flutter',
+                data: '11/02/2019',
+                nota: 7)
+            .toMap());
   }
 }

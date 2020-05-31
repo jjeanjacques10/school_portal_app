@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:school_portal_app/models/turma_model.dart';
-import 'package:school_portal_app/screens/chamada_detalhes_screen.dart';
-import 'package:school_portal_app/screens/tarefas_detalhes_screen.dart';
+import 'package:school_portal_app/screens/chamada/chamada_detalhes_screen.dart';
+import 'package:school_portal_app/screens/tarefas/tarefas_detalhes_screen.dart';
 
 class TurmaCard extends StatelessWidget {
+  final BuildContext ctx;
   final TurmaModel turmaModel;
-  final String tipo;
+  final String route;
 
   const TurmaCard({
+    this.ctx,
     this.turmaModel,
-    this.tipo,
+    this.route,
   });
 
   @override
-  Widget build(BuildContext ctx) {
+  Widget build(BuildContext context) {
     return Card(
       elevation: 12.0,
       margin: new EdgeInsets.symmetric(
@@ -58,27 +60,7 @@ class TurmaCard extends StatelessWidget {
             size: 30.0,
           ),
           onTap: () {
-            if (tipo == "chamada") {
-              Navigator.push(
-                ctx,
-                new MaterialPageRoute(
-                  builder: (context) => ChamadaDetalhesScreen(),
-                  settings: RouteSettings(
-                    arguments: turmaModel,
-                  ),
-                ),
-              );
-            } else {
-              Navigator.push(
-                ctx,
-                new MaterialPageRoute(
-                  builder: (context) => new TarefasDetalhesScreen(),
-                  settings: RouteSettings(
-                    arguments: turmaModel,
-                  ),
-                ),
-              );
-            }
+            Navigator.pushNamed(ctx, route, arguments: turmaModel);
           },
         ),
       ),

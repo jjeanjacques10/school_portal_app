@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:school_portal_app/components/turma_card.dart';
 import 'package:school_portal_app/models/turma_model.dart';
 import 'package:school_portal_app/repository/turma_repository.dart';
-import 'package:school_portal_app/screens/cadastro_tarefas_screen.dart';
+import 'package:school_portal_app/screens/tarefas/cadastro_tarefas_screen.dart';
 
-class TarefasScreen extends StatefulWidget {
-  TarefasScreen({Key key}) : super(key: key);
+class TarefasScreen extends StatelessWidget {
+  final BuildContext ctx;
 
-  @override
-  _TarefasScreenState createState() => _TarefasScreenState();
-}
+  TarefasScreen({
+    this.ctx,
+  });
 
-class _TarefasScreenState extends State<TarefasScreen> {
   TurmaRepository turmaRepository = TurmaRepository();
 
   @override
@@ -84,12 +83,13 @@ class _TarefasScreenState extends State<TarefasScreen> {
   ListView buildListView(List<TurmaModel> turmas) {
     return ListView.builder(
       itemCount: turmas == null ? 0 : turmas.length,
-      itemBuilder: (BuildContext ctx, int index) {
+      itemBuilder: (BuildContext context, int index) {
         TurmaModel turma = turmas[index];
 
         return TurmaCard(
+          ctx: ctx,
           turmaModel: turma,
-          tipo: 'tarefas',
+          route: '/tarefas-detalhes',
         );
       },
     );

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/models/professor_model.dart';
 
-class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  final ProfessorModel professorModel;
 
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
+  const HomeScreen({
+    this.professorModel,
+  });
 
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Text(
-                      'Olá, Flávio Moreni',
+                      'Olá, ${professorModel.nome}',
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           color: Colors.pink,
@@ -97,9 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       ],
                     ),
-                    onTap: () {
-                      //navegarTelaCursoDetalhes(context, curso);
-                    },
+                    onTap: () {},
                   ),
                 ),
               ),
@@ -141,9 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    onTap: () {
-                      //navegarTelaCursoDetalhes(context, curso);
-                    },
+                    onTap: () {},
                   ),
                 ),
               ),
@@ -155,12 +151,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       return Text(snapshot.data.toString());
                     } else {
                       return Center(
-                        child: Text("Nenhum curso cadastrado!"),
+                        child: Text("Nenhum cadastrado!"),
                       );
                     }
                   } else {
                     return Center(
-                        // child: CircularProgressIndicator(),
+                        //child: CircularProgressIndicator(),
                         );
                   }
                 },
@@ -171,28 +167,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  Choice _selectedChoice = choices[0]; // The app's "state".
-
-  void _select(Choice choice) {
-    // Causes the app to rebuild with the new _selectedChoice.
-    setState(() {
-      _selectedChoice = choice;
-    });
-  }
 }
-
-class Choice {
-  const Choice({this.title, this.icon});
-  final String title;
-  final IconData icon;
-}
-
-const List<Choice> choices = const <Choice>[
-  const Choice(title: 'Notificações', icon: Icons.mail),
-  const Choice(title: 'Editar Perfil', icon: Icons.edit),
-  const Choice(title: 'Configurações', icon: Icons.settings),
-  const Choice(title: 'Avaliar App', icon: Icons.thumb_up),
-  const Choice(title: 'Reportar Erro', icon: Icons.textsms),
-  const Choice(title: 'Sair', icon: Icons.exit_to_app),
-];

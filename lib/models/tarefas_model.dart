@@ -7,7 +7,7 @@ class TarefasModel {
   String turma;
   String disciplina;
   String data;
- 
+  double nota;
 
   TarefasModel({
     this.id,
@@ -16,6 +16,7 @@ class TarefasModel {
     this.turma,
     this.disciplina,
     this.data,
+    this.nota,
   });
 
   factory TarefasModel.fromJson(String str) =>
@@ -30,6 +31,7 @@ class TarefasModel {
         turma: json["turma"],
         disciplina: json["disciplina"],
         data: json["data"],
+        nota: json["nota"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -39,5 +41,6 @@ class TarefasModel {
         "turma": turma,
         "disciplina": disciplina,
         "data": data,
+        "nota": nota,
       };
 }
