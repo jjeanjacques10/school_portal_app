@@ -43,6 +43,16 @@ class ProfessorRepository {
     }
   }
 
+  Future<int> update(ProfessorModel professorModel) async {
+    var connection = await _databaseHelper.connection;
+    return await connection.update(
+      "ProfessorModel",
+      professorModel.toMap(),
+      where: "rm = ?",
+      whereArgs: [professorModel.rm],
+    );
+  }
+
   Future<int> create(ProfessorModel professorModel) async {
     var connection = await _databaseHelper.connection;
 

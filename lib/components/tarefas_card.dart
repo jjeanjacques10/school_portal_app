@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/models/tarefas_model.dart';
+import 'package:school_portal_app/repository/tarefas_repository.dart';
 
 class TarefasCard extends StatefulWidget {
-  final String nome;
-  final String rm;
-  final String foto;
-  final String sala;
+  final TarefasModel tarefa;
 
   const TarefasCard({
-    this.nome,
-    this.rm,
-    this.foto,
-    this.sala,
+    this.tarefa,
   });
 
   @override
@@ -18,7 +14,9 @@ class TarefasCard extends StatefulWidget {
 }
 
 class _TarefasCardState extends State<TarefasCard> {
-  bool isChecked = false;
+  final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final TarefasRepository tarefasRepository = new TarefasRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -28,49 +26,99 @@ class _TarefasCardState extends State<TarefasCard> {
         horizontal: 12.0,
         vertical: 6.0,
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.pink,
-        ),
-        child: ListTile(
-          leading: Image.network(widget.foto),
-          contentPadding:
-              EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-          title: Text(
-            widget.nome,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
-          ),
-          subtitle: Row(
+      child: Form(
+        key: formKey,
+        child: Center(
+          child: Column(
             children: <Widget>[
-              Expanded(
-                flex: 3,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 0),
-                  child: Text(
-                    "${widget.rm}",
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.pink,
+                ),
+                child: ListTile(
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                  title: Text(
+                    '${widget.tarefa.tipo} ${widget.tarefa.titulo}',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  subtitle: Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 0),
+                          child: Text(
+                            "${widget.tarefa.data}",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ),
+                      RaisedButton(
+                        child: Text("Gravar"),
+                        onPressed: () {
+                          if (formKey.currentState.validate()) {
+                            formKey.currentState.save();
+
+                            tarefasRepository.update(widget.tarefa);
+                          } else {
+                            scaffoldKey.currentState.showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Não foi possível gravar o curso.',
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                  trailing: Container(
+                    width: 50.0,
+                    child: TextFormField(
+                      initialValue: widget.tarefa.nota.toString(),
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: true),
+                      textAlign: TextAlign.center,
+                      cursorColor: Colors.white,
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        height: 1.0,
+                        color: Colors.white,
+                      ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Digite a nota';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        widget.tarefa.nota = double.parse(value);
+                      },
                     ),
                   ),
                 ),
-              )
-            ],
-          ),
-          trailing: Container(
-            width: 30.0,
-            child: TextField(
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-              style: TextStyle(
-                fontSize: 20.0,
-                height: 2.0,
-                color: Colors.white,
               ),
-            ),
+            ],
           ),
         ),
       ),

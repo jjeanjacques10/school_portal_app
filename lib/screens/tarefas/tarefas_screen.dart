@@ -1,50 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:school_portal_app/components/tarefas_card.dart';
+import 'package:school_portal_app/components/turma_card.dart';
 import 'package:school_portal_app/models/turma_model.dart';
 import 'package:school_portal_app/repository/turma_repository.dart';
+import 'package:school_portal_app/screens/tarefas/cadastro_tarefas_screen.dart';
 
-class TarefasDetalhesScreen extends StatefulWidget {
-  TarefasDetalhesScreen({Key key}) : super(key: key);
+class TarefasScreen extends StatefulWidget {
+  TarefasScreen({Key key}) : super(key: key);
 
   @override
-  _TarefasDetalhesScreenState createState() => _TarefasDetalhesScreenState();
+  _TarefasScreenState createState() => _TarefasScreenState();
 }
 
-class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
+class _TarefasScreenState extends State<TarefasScreen> {
   TurmaRepository turmaRepository = TurmaRepository();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        resizeToAvoidBottomPadding: false,
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: ListView(
+          padding: const EdgeInsets.only(top: 0),
+          child: Column(
             children: [
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
                 child: Text(
-                  'Tarefas | 3SIB | 30/05/2020',
-                  textAlign: TextAlign.center,
+                  'Tarefas',
+                  textAlign: TextAlign.left,
                   style: TextStyle(
                       color: Colors.pink,
                       fontSize: 25,
                       fontWeight: FontWeight.w500),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(0),
+                child: RaisedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CadastroTarefasScreen()),
+                      );
+                    },
+                    color: Colors.grey,
+                    child: const Text('Adicionar nova tarefa',
+                        style: TextStyle(fontSize: 16, color: Colors.white))),
+              ),
               Expanded(
                   child: SizedBox(
                 child: futuro(),
               )),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: RaisedButton(
-                    onPressed: null,
-                    child: const Text('Salvar',
-                        style: TextStyle(fontSize: 16, color: Colors.white))),
-              ),
             ],
           ),
         ),
@@ -59,7 +67,6 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data.length > 0) {
             return buildListView(snapshot.data);
-            //return ItemCard('Desenvolvimento Cross Platform', '3SIA','11:40', '304 un. 2');
           } else {
             return Center(
               child: Text("Nenhum curso cadastrado!"),
@@ -75,17 +82,14 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
   }
 
   ListView buildListView(List<TurmaModel> turmas) {
-    print(turmas.length);
     return ListView.builder(
       itemCount: turmas == null ? 0 : turmas.length,
       itemBuilder: (BuildContext ctx, int index) {
         TurmaModel turma = turmas[index];
 
-        return TarefasCard(
-          nome: turma.nome,
-          rm: "",
-          foto: "",
-          sala: "",
+        return TurmaCard(
+          turmaModel: turma,
+          tipo: 'tarefas',
         );
       },
     );

@@ -1,6 +1,7 @@
 import 'package:path/path.dart';
 import 'package:school_portal_app/models/chamada_aluno.dart';
 import 'package:school_portal_app/models/professor_model.dart';
+import 'package:school_portal_app/models/tarefas_model.dart';
 import 'package:school_portal_app/models/turma_model.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -33,7 +34,7 @@ class DatabaseHelper {
 
     var database = await openDatabase(
       dbPath,
-      version: 1,
+      version: 2,
       onCreate: _createTables,
     );
 
@@ -75,60 +76,17 @@ class DatabaseHelper {
       );
       ''',
     );
-    await database.execute(
-      '''
-      CREATE TABLE DisciplinaModel (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT,
-        rmProfessor TEXT,
-        FOREIGN KEY(rmProfessor) REFERENCES ProfessorModel(rm)
-      );
-      ''',
-    );
-    await database.execute(
-      '''
-      CREATE TABLE DisciplinaTurma(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        idDisciplina INTEGER,
-        idTurma INTEGER,
-        FOREIGN KEY(idDisciplina) REFERENCES DisciplinaModel(id),
-        FOREIGN KEY(idTurma) REFERENCES DisciplinaModel(id)
-      );
-      ''',
-    );
+
     await database.execute(
       '''
      CREATE TABLE TarefasModel(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nota TEXT,
+        titulo TEXT,
         tipo TEXT,
-        dataEntrega TEXT,
-        idDisciplina INTEGER,
-        FOREIGN KEY(idDisciplina) REFERENCES DisciplinaModel(id)
-      );
-      ''',
-    );
-    await database.execute(
-      '''
-      CREATE TABLE TarefasAluno(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        rmAluno TEXT,
-        idTarefas INTEGER,
-        FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
-        FOREIGN KEY(idTarefas) REFERENCES TarefasModel(id)
-      );
-      ''',
-    );
-    await database.execute(
-      '''
-      CREATE TABLE ChamadaModel(
-        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-        presente INTEGER DEFAULT 0,
+        turma TEXT,
+        disciplina TEXT,
         data TEXT,
-        rmAluno TEXT,
-        idDisciplinaTurma INTEGER,
-        FOREIGN KEY(rmAluno) REFERENCES AlunoModel(rm),
-        FOREIGN KEY(idDisciplinaTurma) REFERENCES DisciplinaTurma(id)
+        nota REAL DEFAULT 0
       );
       ''',
     );
@@ -149,13 +107,13 @@ class DatabaseHelper {
     await database.insert("ProfessorModel",
         new ProfessorModel(rm: "123", nome: "Flavio", senha: "123").toMap());
     await database.insert("ProfessorModel",
-        new ProfessorModel(rm: "1234", nome: "Pedro", senha: "123").toMap());
+        new ProfessorModel(rm: "Pedro", nome: "Pedro", senha: "123").toMap());
 
     await database.insert(
         "TurmaModel",
         new TurmaModel(
           id: 1,
-          nome: '3SIA',
+          nome: '2SIA',
           disciplina: 'Flutter',
           horario: 'Manhã',
           inicio: '8:00',
@@ -166,9 +124,9 @@ class DatabaseHelper {
         "TurmaModel",
         new TurmaModel(
           id: 2,
-          nome: '123222',
-          disciplina: '22',
-          horario: 'Mobile',
+          nome: '3SIB',
+          disciplina: 'Mobile',
+          horario: 'Manhã',
           inicio: '8:00',
           termino: '9:40',
         ).toMap());
@@ -177,7 +135,7 @@ class DatabaseHelper {
         "TurmaModel",
         new TurmaModel(
           id: 3,
-          nome: '123',
+          nome: '3SIA',
           disciplina: 'Web Services',
           horario: 'Manhã',
           inicio: '8:00',
@@ -193,7 +151,7 @@ class DatabaseHelper {
               'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
           rmAluno: 'RM80515',
           presente: 1,
-          turma: '3SIB',
+          turma: '3SIA',
         ).toMap());
 
     await database.insert(
@@ -231,30 +189,53 @@ class DatabaseHelper {
           presente: 0,
           turma: '3SIB',
         ).toMap());
-/*
-    await database.insert("AlunoModel",
-        new AlunoModel(rm: "85132", nome: "Jean", foto: "foto.png",idTurma: 1).toMap());
-    await database.insert("AlunoModel",
-        new AlunoModel(rm: "80101", nome: "vini", foto: "foto.png",idTurma: 2).toMap());
-    await database.insert("AlunoModel",
-        new AlunoModel(rm: "85183", nome: "petillo", foto: "foto.png",idTurma: 1).toMap());
-    await database.insert("AlunoModel",
-        new AlunoModel(rm: "49845", nome: "vitor", foto: "foto.png",idTurma: 1).toMap());
 
-    await database.insert("DisciplinaTurma",
-        new DisciplinaTurma(id: 1, idTurma: 1, idDisciplina: 1,).toMap());
+    await database.insert(
+        "ChamadaAluno",
+        new ChamadaAluno(
+          id: 5,
+          nome: 'Jean Jacques',
+          foto:
+              'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+          rmAluno: 'RM81534',
+          presente: 0,
+          turma: '2SIA',
+        ).toMap());
 
-    await database.insert("DisciplinaModel",
-        new DisciplinaModel(id: 1, nome: "Flavio", rmProfessor: "123",).toMap());
+    await database.insert(
+        "TarefasModel",
+        new TarefasModel(
+          id: 1,
+          titulo: 'Prova Teste',
+          tipo: 'NAC',
+          turma: '3SIA',
+          disciplina: 'Flutter',
+          data: '11/02/2019',
+          nota: 0,
+        ).toMap());
 
-    await database.insert("TarefasModel",
-        new TarefasModel(id: 1, nota: "10", tipo: "1",dataEntrega: "12/12/2020",idDisciplina: 1).toMap());
+    await database.insert(
+        "TarefasModel",
+        new TarefasModel(
+                id: 2,
+                titulo: 'Prova Teste 2',
+                tipo: 'NAC',
+                turma: '3SIA',
+                disciplina: 'Flutter',
+                data: '11/02/2019',
+                nota: 10)
+            .toMap());
 
-    await database.insert("TarefasAluno",
-        new TarefasAluno(id: 1, rmAluno:  "10", idTarefas: 1).toMap());
-
-    await database.insert("ChamadaModel",
-        new ChamadaModel(id: 49845, presente: 0, data:"12/15/2020", rmAluno:"85132", idDisciplinaTurma:1 ).toMap());
-*/
+    await database.insert(
+        "TarefasModel",
+        new TarefasModel(
+                id: 3,
+                titulo: 'Prova Teste 3',
+                tipo: 'NAC',
+                turma: '3SIB',
+                disciplina: 'Flutter',
+                data: '11/02/2019',
+                nota: 7)
+            .toMap());
   }
 }
