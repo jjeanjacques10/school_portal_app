@@ -8,6 +8,7 @@ class HomeScreen extends StatelessWidget {
     this.professorModel,
   });
 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -97,7 +98,8 @@ class HomeScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    onTap: () {},
+                    onTap: () {
+                    },
                   ),
                 ),
               ),
