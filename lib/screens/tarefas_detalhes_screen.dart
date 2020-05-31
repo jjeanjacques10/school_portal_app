@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:school_portal_app/components/tarefas_card.dart';
+import 'package:school_portal_app/models/tarefas_aluno.dart';
+import 'package:school_portal_app/models/tarefas_model.dart';
 import 'package:school_portal_app/models/turma_model.dart';
 import 'package:school_portal_app/repository/turma_repository.dart';
+import 'package:school_portal_app/repository/tarefas_repository.dart';
 
 class TarefasDetalhesScreen extends StatefulWidget {
   TarefasDetalhesScreen({Key key}) : super(key: key);
@@ -11,9 +14,13 @@ class TarefasDetalhesScreen extends StatefulWidget {
 }
 
 class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
-  TurmaRepository turmaRepository = TurmaRepository();
+  TarefasRepository tarefasRepository = TarefasRepository();
+  TurmaModel turmaModel;
+
   @override
   Widget build(BuildContext context) {
+    turmaModel = ModalRoute.of(context).settings.arguments;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -26,7 +33,7 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
                 child: Text(
-                  'Tarefas | 3SIB | 30/05/2020',
+                  'Tarefas | ${turmaModel.nome} | 30/05/2020',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.pink,
@@ -36,7 +43,7 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
               ),
               Expanded(
                   child: SizedBox(
-                child: futuro(),
+                child: tarefasList(turmaModel),
               )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -70,17 +77,16 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
     );
   }
 
-  Widget futuro() {
+  Widget tarefasList(TurmaModel turmaModel) {
     return FutureBuilder<List>(
-      future: turmaRepository.findAll(),
+      future: tarefasRepository.findAll(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data.length > 0) {
             return buildListView(snapshot.data);
-            //return ItemCard('Desenvolvimento Cross Platform', '3SIA','11:40', '304 un. 2');
           } else {
             return Center(
-              child: Text("Nenhum curso cadastrado!"),
+              child: Text("Nenhuma tarefas cadastradas!"),
             );
           }
         } else {
@@ -92,18 +98,14 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
     );
   }
 
-  ListView buildListView(List<TurmaModel> turmas) {
-    
+  ListView buildListView(List<TarefasModel> tarefas) {
     return ListView.builder(
-      itemCount: turmas == null ? 0 : turmas.length,
+      itemCount: tarefas == null ? 0 : tarefas.length,
       itemBuilder: (BuildContext ctx, int index) {
-        TurmaModel turma = turmas[index];
+        TarefasModel tarefa = tarefas[index];
 
         return TarefasCard(
-          nome: turma.nome,
-          rm: "",
-          foto: "",
-          sala: "",
+          tarefa: tarefa,
         );
       },
     );
