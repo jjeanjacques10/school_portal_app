@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:school_portal_app/components/chamada_card.dart';
 import 'package:school_portal_app/models/chamada_aluno.dart';
 import 'package:school_portal_app/models/turma_model.dart';
 import 'package:school_portal_app/repository/chamada_aluno_repository.dart';
-import 'package:intl/intl.dart';
 
 class ChamadaDetalhesScreen extends StatefulWidget {
   ChamadaDetalhesScreen({Key key}) : super(key: key);
@@ -25,6 +25,23 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.black,
+            title: Text(
+              'FIAPP',
+              style: TextStyle(color: Colors.pink),
+            ),
+            centerTitle: true,
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.pink,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
           resizeToAvoidBottomPadding: false,
           body: Padding(
             padding: const EdgeInsets.only(top: 0),
@@ -46,22 +63,6 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
                   child: SizedBox(
                     child: chamadaList(turmaModel),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: RaisedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          color: Colors.grey,
-                          child: const Text('Voltar',
-                              style: TextStyle(
-                                  fontSize: 16, color: Colors.white))),
-                    ),
-                  ],
                 ),
               ],
             ),

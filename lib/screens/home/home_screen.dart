@@ -10,8 +10,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //professorModel = ModalRoute.of(context).settings.arguments;
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
