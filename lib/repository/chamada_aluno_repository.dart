@@ -32,6 +32,30 @@ class ChamadaAlunoRepository {
     return listaChamadaAluno;
   }
 
+  Future<List<ChamadaAluno>> findChamadaTurma(String turmaName) async {
+    var connection = await _databaseHelper.connection;
+    var result = await connection.query(
+      "ChamadaAluno",
+      columns: [
+        "id",
+        "nome",
+        "foto",
+        "rmAluno",
+        "presente",
+        "turma",
+      ],
+      where: "turma = ?",
+      whereArgs: [turmaName],
+    );
+
+    List<ChamadaAluno> listaChamadaAluno = new List<ChamadaAluno>();
+    for (Map i in result) {
+      listaChamadaAluno.add(ChamadaAluno.fromMap(i));
+    }
+
+    return listaChamadaAluno;
+  }
+
   Future<int> update(ChamadaAluno chamadaAluno) async {
     var connection = await _databaseHelper.connection;
     return await connection.update(
