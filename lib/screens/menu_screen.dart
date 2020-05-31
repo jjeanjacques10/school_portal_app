@@ -58,7 +58,7 @@ class _MenuScreenState extends State<MenuScreen> {
               onSelected: _select,
               itemBuilder: (BuildContext context) {
                 return choices.map((Choice choice) {
-                  return PopupMenuItem<Choice>(
+                  return PopupMenuItem<Choice>(                    
                     value: choice,
                     child: Row(
                       children: [

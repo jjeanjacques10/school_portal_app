@@ -43,9 +43,10 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
                   ),
                 ),
                 Expanded(
-                    child: SizedBox(
-                  child: futuro(),
-                )),
+                  child: SizedBox(
+                    child: ChamadaList(turmaModel),
+                  ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -68,16 +69,16 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
     );
   }
 
-  Widget futuro() {
+  Widget ChamadaList(TurmaModel turmaModel) {
     return FutureBuilder<List>(
-      future: chamadaAlunoRepository.findAll(),
+      future: chamadaAlunoRepository.findChamadaTurma(turmaModel.nome),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data.length > 0) {
             return buildListView(snapshot.data);
           } else {
             return Center(
-              child: Text("Nenhum curso cadastrado!"),
+              child: Text("Nenhum aluno cadastrado!"),
             );
           }
         } else {
