@@ -22,15 +22,27 @@ class ChamadaScreen extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
-                child: Text(
-                  'Chamada',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Colors.pink,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500),
+                padding: const EdgeInsets.only(top: 30, bottom: 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(right: 10),
+                      child: Icon(
+                        Icons.assignment_ind,
+                        color: Colors.pink,
+                        size: 30,
+                      ),
+                    ),
+                    Text(
+                      'Chamada',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.pink,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
               ),
               Expanded(
