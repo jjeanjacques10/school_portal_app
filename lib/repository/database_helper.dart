@@ -116,8 +116,8 @@ class DatabaseHelper {
           nome: '2SIA',
           disciplina: 'Flutter',
           horario: 'Manhã',
-          inicio: '8:00',
-          termino: '9:40',
+          inicio: '8h00',
+          termino: '9h40',
         ).toMap());
 
     await database.insert(
@@ -127,8 +127,8 @@ class DatabaseHelper {
           nome: '3SIB',
           disciplina: 'Mobile',
           horario: 'Manhã',
-          inicio: '8:00',
-          termino: '9:40',
+          inicio: '10h00',
+          termino: '11h40',
         ).toMap());
 
     await database.insert(
@@ -137,9 +137,9 @@ class DatabaseHelper {
           id: 3,
           nome: '3SIA',
           disciplina: 'Web Services',
-          horario: 'Manhã',
-          inicio: '8:00',
-          termino: '9:40',
+          horario: 'Noite',
+          inicio: '19h00',
+          termino: '20h40',
         ).toMap());
 
     await database.insert(
