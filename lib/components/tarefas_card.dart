@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/models/tarefas_model.dart';
 
 class TarefasCard extends StatefulWidget {
-  final String nome;
-  final String rm;
-  final String foto;
-  final String sala;
+  final TarefasModel tarefa;
 
   const TarefasCard({
-    this.nome,
-    this.rm,
-    this.foto,
-    this.sala,
+    this.tarefa,
   });
 
   @override
@@ -33,11 +28,11 @@ class _TarefasCardState extends State<TarefasCard> {
           color: Colors.pink,
         ),
         child: ListTile(
-          leading: Image.network(widget.foto),
+          
           contentPadding:
               EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
           title: Text(
-            widget.nome,
+            widget.tarefa.titulo,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -51,7 +46,7 @@ class _TarefasCardState extends State<TarefasCard> {
                 child: Padding(
                   padding: EdgeInsets.only(left: 0),
                   child: Text(
-                    "${widget.rm}",
+                    "${widget.tarefa.data}",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,

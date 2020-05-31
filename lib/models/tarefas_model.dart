@@ -1,14 +1,16 @@
 import 'dart:convert';
 
-
 class TarefasModel {
-   String titulo;
-   String tipo;
-   String turma;
-   String disciplina;
-   String data;
+  int id;
+  String titulo;
+  String tipo;
+  String turma;
+  String disciplina;
+  String data;
+ 
 
   TarefasModel({
+    this.id,
     this.titulo,
     this.tipo,
     this.turma,
@@ -22,6 +24,7 @@ class TarefasModel {
   String toJson() => json.encode(toMap());
 
   factory TarefasModel.fromMap(Map<String, dynamic> json) => TarefasModel(
+        id: json["id"],
         titulo: json["titulo"],
         tipo: json["tipo"],
         turma: json["turma"],
@@ -30,10 +33,11 @@ class TarefasModel {
       );
 
   Map<String, dynamic> toMap() => {
+        "id": id,
         "titulo": titulo,
         "tipo": tipo,
         "turma": turma,
-        "disciplina":disciplina,
+        "disciplina": disciplina,
         "data": data,
       };
 }

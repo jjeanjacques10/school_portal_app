@@ -1,6 +1,7 @@
 import 'package:path/path.dart';
 import 'package:school_portal_app/models/chamada_aluno.dart';
 import 'package:school_portal_app/models/professor_model.dart';
+import 'package:school_portal_app/models/tarefas_model.dart';
 import 'package:school_portal_app/models/turma_model.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -101,14 +102,14 @@ class DatabaseHelper {
      CREATE TABLE TarefasModel(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         titulo TEXT,
-        nota TEXT,
         tipo TEXT,
-        dataEntrega TEXT,
-        idDisciplina INTEGER,
-        FOREIGN KEY(idDisciplina) REFERENCES DisciplinaModel(id)
+        turma TEXT,
+        disciplina TEXT,
+        data TEXT
       );
       ''',
     );
+
     await database.execute(
       '''
       CREATE TABLE TarefasAluno(
@@ -120,6 +121,7 @@ class DatabaseHelper {
       );
       ''',
     );
+
     await database.execute(
       '''
       CREATE TABLE ChamadaModel(
@@ -243,6 +245,39 @@ class DatabaseHelper {
           rmAluno: 'RM81534',
           presente: 0,
           turma: '2SIA',
+        ).toMap());
+
+    await database.insert(
+        "TarefasModel",
+        new TarefasModel(
+          id: 1,
+          titulo: 'Prova Teste',
+          tipo: 'NAC',
+          turma: '3SIA',
+          disciplina: 'Flutter',
+          data: '11/02/2019',
+        ).toMap());
+
+    await database.insert(
+        "TarefasModel",
+        new TarefasModel(
+          id: 2,
+          titulo: 'Prova Teste 2',
+          tipo: 'NAC',
+          turma: '3SIA',
+          disciplina: 'Flutter',
+          data: '11/02/2019',
+        ).toMap());
+
+    await database.insert(
+        "TarefasModel",
+        new TarefasModel(
+          id: 3,
+          titulo: 'Prova Teste 3',
+          tipo: 'NAC',
+          turma: '3SIB',
+          disciplina: 'Flutter',
+          data: '11/02/2019',
         ).toMap());
   }
 }
