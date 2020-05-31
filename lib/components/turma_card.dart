@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/models/turma_model.dart';
 import 'package:school_portal_app/screens/chamada_detalhes_screen.dart';
 import 'package:school_portal_app/screens/tarefas_detalhes_screen.dart';
 
 class TurmaCard extends StatelessWidget {
-  final int id;
-  final String nome;
-  final String disciplina;
-  final String horario;
-  final String inicio;
-  final String termino;
-  final String rota;
+  final TurmaModel turmaModel;
+  final String tipo;
 
-  const TurmaCard(
-    BuildContext context, {
-    this.id,
-    this.nome,
-    this.disciplina,
-    this.horario,
-    this.inicio,
-    this.termino,
-    this.rota,
+  const TurmaCard( {
+    this.turmaModel,
+    this.tipo,
   });
 
   @override
@@ -38,7 +28,7 @@ class TurmaCard extends StatelessWidget {
           contentPadding:
               EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
           title: Text(
-            disciplina,
+            turmaModel.disciplina,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -52,7 +42,7 @@ class TurmaCard extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 0),
                   child: Text(
-                    "${nome} | ${horario} | ${inicio} | ${termino}",
+                    "${turmaModel.nome} | ${turmaModel.horario} | ${turmaModel.inicio} | ${turmaModel.termino}",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,
@@ -68,11 +58,16 @@ class TurmaCard extends StatelessWidget {
             size: 30.0,
           ),
           onTap: () {
-            if (rota == "/chamada-detalhes") {
+            if (tipo == "chamada") {
               Navigator.push(
-                  ctx,
-                  new MaterialPageRoute(
-                      builder: (context) => new ChamadaDetalhesScreen()));
+                ctx,
+                new MaterialPageRoute(
+                  builder: (context) => ChamadaDetalhesScreen(),
+                  settings: RouteSettings(
+                    arguments: turmaModel,
+                  ),
+                ),
+              );
             } else {
               Navigator.push(
                   ctx,

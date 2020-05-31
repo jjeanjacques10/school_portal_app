@@ -21,7 +21,7 @@ class _ChamadaCardState extends State<ChamadaCard> {
   @override
   Widget build(BuildContext context) {
     bool presente = widget.chamadaAluno.presente == 1;
-    print(widget.chamadaAluno.presente);
+    
     isChecked = presente;
     return Card(
       elevation: 12.0,
