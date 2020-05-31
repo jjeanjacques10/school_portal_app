@@ -58,7 +58,8 @@ class _MenuScreenState extends State<MenuScreen> {
               onSelected: _select,
               itemBuilder: (BuildContext context) {
                 return choices.map((Choice choice) {
-                  return PopupMenuItem<Choice>(                    
+                  return PopupMenuItem<Choice>(
+                    enabled: choice.enabled,
                     value: choice,
                     child: Row(
                       children: [
@@ -115,16 +116,16 @@ class _MenuScreenState extends State<MenuScreen> {
 }
 
 class Choice {
-  const Choice({this.title, this.icon});
+  const Choice({this.title, this.icon, this.enabled});
   final String title;
   final IconData icon;
+  final bool enabled;
 }
 
 const List<Choice> choices = const <Choice>[
-  const Choice(title: 'Notificações', icon: Icons.mail),
-  const Choice(title: 'Editar Perfil', icon: Icons.edit,),
-  const Choice(title: 'Configurações', icon: Icons.settings),
-  const Choice(title: 'Avaliar App', icon: Icons.thumb_up),
-  const Choice(title: 'Reportar Erro', icon: Icons.textsms),
-  const Choice(title: 'Sair', icon: Icons.exit_to_app),
+  const Choice(title: 'Notificações', icon: Icons.mail, enabled: false),
+  const Choice(title: 'Editar Perfil', icon: Icons.edit, enabled: false),
+  const Choice(title: 'Configurações', icon: Icons.settings, enabled: false),
+  const Choice(title: 'Reportar Erro', icon: Icons.textsms, enabled: false),
+  const Choice(title: 'Sair', icon: Icons.exit_to_app, enabled: true),
 ];
