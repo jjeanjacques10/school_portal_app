@@ -100,6 +100,7 @@ class DatabaseHelper {
       '''
      CREATE TABLE TarefasModel(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
+        titulo TEXT,
         nota TEXT,
         tipo TEXT,
         dataEntrega TEXT,
