@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:school_portal_app/models/turma_model.dart';
-import 'package:school_portal_app/screens/chamada_detalhes_screen.dart';
-import 'package:school_portal_app/screens/tarefas_detalhes_screen.dart';
+import 'package:school_portal_app/screens/chamada/chamada_detalhes_screen.dart';
+import 'package:school_portal_app/screens/tarefas/tarefas_detalhes_screen.dart';
 
 class TurmaCard extends StatelessWidget {
   final TurmaModel turmaModel;

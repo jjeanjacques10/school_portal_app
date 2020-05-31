@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:school_portal_app/screens/cadastro_tarefas_screen.dart';
-import 'package:school_portal_app/screens/chamada_detalhes_screen.dart';
-import 'package:school_portal_app/screens/chamada_screen.dart';
+import 'package:school_portal_app/screens/chamada/chamada_detalhes_screen.dart';
+import 'package:school_portal_app/screens/chamada/chamada_screen.dart';
 import 'package:school_portal_app/screens/home/home_screen.dart';
 import 'package:school_portal_app/screens/login_screen.dart';
 import 'package:school_portal_app/screens/menu_screen.dart';
 import 'package:school_portal_app/screens/professor/cadastro_professor_screen.dart';
 import 'package:school_portal_app/screens/professor/edicao_professor_screen.dart';
-import 'package:school_portal_app/screens/tarefas_detalhes_screen.dart';
-import 'package:school_portal_app/screens/tarefas_screen.dart';
+import 'package:school_portal_app/screens/tarefas/cadastro_tarefas_screen.dart';
+import 'package:school_portal_app/screens/tarefas/tarefas_detalhes_screen.dart';
+import 'package:school_portal_app/screens/tarefas/tarefas_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Montserrat',
       ),
       home: MaterialApp(
-        initialRoute: '/menu',
+        initialRoute: '/login',
         routes: {
           '/login': (context) => LoginScreen(),
           '/menu': (context) => MenuScreen(),

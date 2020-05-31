@@ -87,6 +87,7 @@ class _EdicaoProfessorScreenState extends State<EdicaoProfessorScreen> {
                           icon: const Icon(Icons.person_pin),
                           fillColor: Colors.white,
                           hintText: 'Digite o seu RM',
+                          enabled: false,
                           labelText: "RM"),
                       initialValue: professorModel.rm.toString(),
                       validator: (value) {
@@ -130,9 +131,9 @@ class _EdicaoProfessorScreenState extends State<EdicaoProfessorScreen> {
                           if (formKey.currentState.validate()) {
                             formKey.currentState.save();
 
-                            professorRepository.create(professorModel);
-
-                            Navigator.pop(context);
+                            professorRepository.update(professorModel);
+                            
+                            Navigator.pop(context, professorModel);
                           } else {
                             scaffoldKey.currentState.showSnackBar(
                               SnackBar(

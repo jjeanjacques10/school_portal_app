@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/components/choice_menu.dart';
 import 'package:school_portal_app/models/professor_model.dart';
-import 'package:school_portal_app/screens/chamada_screen.dart';
+import 'package:school_portal_app/screens/chamada/chamada_screen.dart';
 import 'package:school_portal_app/screens/home/home_screen.dart';
-import 'package:school_portal_app/screens/tarefas_screen.dart';
+import 'package:school_portal_app/screens/login_screen.dart';
+import 'package:school_portal_app/screens/tarefas/tarefas_detalhes_screen.dart';
+import 'package:school_portal_app/screens/tarefas/tarefas_screen.dart';
+
+import 'chamada/chamada_detalhes_screen.dart';
+import 'professor/cadastro_professor_screen.dart';
+import 'professor/edicao_professor_screen.dart';
+import 'tarefas/cadastro_tarefas_screen.dart';
 
 class MenuScreen extends StatefulWidget {
   MenuScreen({Key key}) : super(key: key);
@@ -13,24 +21,17 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   ProfessorModel professorModel;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   // Menu superior
-  Choice _selectedChoice = choices[0];
+  ChoiceMenu _selectedChoice = choices[0];
 
-  void _select(Choice choice) {
+  void _select(ChoiceMenu choice) {
     setState(() {
       _selectedChoice = choice;
     });
   }
-
-  // Menu de navegação
-  int _selectedIndex = 0;
-  final List<Widget> _widgetOptions = [
-    HomeScreen(),
-    ChamadaScreen(),
-    TarefasScreen()
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -38,10 +39,19 @@ class _MenuScreenState extends State<MenuScreen> {
     });
   }
 
+  // Menu de navegação
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     professorModel = ModalRoute.of(context).settings.arguments;
-
+    final List<Widget> _widgetOptions = [
+      HomeScreen(
+        professorModel: professorModel,
+      ),
+      ChamadaScreen(),
+      TarefasScreen()
+    ];
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -54,23 +64,31 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
           centerTitle: true,
           actions: [
-            PopupMenuButton<Choice>(
+            PopupMenuButton<ChoiceMenu>(
               onSelected: _select,
               itemBuilder: (BuildContext context) {
-                return choices.map((Choice choice) {
-                  return PopupMenuItem<Choice>(
+                return choices.map((ChoiceMenu choice) {
+                  return PopupMenuItem<ChoiceMenu>(
                     enabled: choice.enabled,
                     value: choice,
                     child: Row(
                       children: [
-                        Icon(
-                          choice.icon,
-                          color: Colors.pink,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Text(choice.title),
-                        ),
+                        GestureDetector(
+                            onTap: () {
+                              _onSelectChoice(context, choice.title);
+                            },
+                            child: Row(
+                              children: [
+                                Icon(
+                                  choice.icon,
+                                  color: Colors.pink,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(choice.title),
+                                ),
+                              ],
+                            ))
                       ],
                     ),
                   );
@@ -113,19 +131,41 @@ class _MenuScreenState extends State<MenuScreen> {
       ),
     );
   }
+
+  void _onSelectChoice(BuildContext context, String value) {
+    switch (value) {
+      case "Sair":
+        Navigator.push(
+          context,
+          new MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ),
+        );
+        break;
+      case "Editar Perfil":
+        Navigator.push(
+          context,
+          new MaterialPageRoute(
+            builder: (context) => EdicaoProfessorScreen(),
+            settings: RouteSettings(
+              arguments: professorModel,
+            ),
+          ),
+        );
+
+        break;
+      default:
+        print("Erro");
+        break;
+    }
+  }
 }
 
-class Choice {
-  const Choice({this.title, this.icon, this.enabled});
-  final String title;
-  final IconData icon;
-  final bool enabled;
-}
-
-const List<Choice> choices = const <Choice>[
-  const Choice(title: 'Notificações', icon: Icons.mail, enabled: false),
-  const Choice(title: 'Editar Perfil', icon: Icons.edit, enabled: false),
-  const Choice(title: 'Configurações', icon: Icons.settings, enabled: false),
-  const Choice(title: 'Reportar Erro', icon: Icons.textsms, enabled: false),
-  const Choice(title: 'Sair', icon: Icons.exit_to_app, enabled: true),
+const List<ChoiceMenu> choices = const <ChoiceMenu>[
+  const ChoiceMenu(title: 'Notificações', icon: Icons.mail, enabled: false),
+  const ChoiceMenu(title: 'Editar Perfil', icon: Icons.edit, enabled: true),
+  const ChoiceMenu(
+      title: 'Configurações', icon: Icons.settings, enabled: false),
+  const ChoiceMenu(title: 'Reportar Erro', icon: Icons.textsms, enabled: false),
+  const ChoiceMenu(title: 'Sair', icon: Icons.exit_to_app, enabled: true),
 ];
