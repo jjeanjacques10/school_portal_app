@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:school_portal_app/models/professor_model.dart';
 import 'package:school_portal_app/repository/professor_repository.dart';
 
-class CadastroTarefaScreen extends StatefulWidget {
-  CadastroTarefaScreen({Key key}) : super(key: key);
+
+class CadastroTarefasScreen extends StatefulWidget {
+  CadastroTarefasScreen({Key key}) : super(key: key);
 
   @override
-  _CadastroTarefaScreenState createState() => _CadastroTarefaScreenState();
+  _CadastroTarefasScreenState createState() => _CadastroTarefasScreenState();
 }
 
-class _CadastroTarefaScreenState extends State<CadastroTarefaScreen> {
+class _CadastroTarefasScreenState extends State<CadastroTarefasScreen> {
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -57,7 +58,7 @@ class _CadastroTarefaScreenState extends State<CadastroTarefaScreen> {
                 child: Column(
                   children: <Widget>[
                     Text(
-                      "Cadastro Tarefa",
+                      "Cadastro Tarefas",
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w600,
@@ -68,7 +69,7 @@ class _CadastroTarefaScreenState extends State<CadastroTarefaScreen> {
                       decoration: new InputDecoration(
                           icon: const Icon(Icons.book),
                           fillColor: Colors.white,
-                          hintText: 'Digite o titulo da tarefa',
+                          hintText: 'Digite o titulo da Tarefas',
                           labelText: "Título"),
                       validator: (value) {
                         if (value.isEmpty) {
@@ -80,24 +81,20 @@ class _CadastroTarefaScreenState extends State<CadastroTarefaScreen> {
                         professorModel.nome = value;
                       },
                     ),
-                    DropdownButton<String>(
+                    DropdownButtonFormField<String>(
                       value: dropdownValue,
                       icon: Icon(Icons.arrow_drop_down),
                       iconSize: 20,
                       isExpanded: true,
                       elevation: 16,
                       iconEnabledColor: Colors.pink,
-                      underline: Container(
-                        height: 2,
-                        color: Colors.grey,
-                      ),
                       hint: Row(
                         children: [
                           Icon(
                             Icons.view_list,
                             color: Colors.grey,
                           ),
-                          Text('Tipo de Tarefa'),
+                          Text('Tipo de Tarefas'),
                         ],
                       ),
                       style: TextStyle(color: Colors.grey),
@@ -106,13 +103,12 @@ class _CadastroTarefaScreenState extends State<CadastroTarefaScreen> {
                           dropdownValue = newValue;
                         });
                       },
-                      items: <String>['One', 'Prova', 'Trabalho', 'Four']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
+                      items: ['Prova', 'Trabalho']
+                          .map((label) => DropdownMenuItem(
+                                child: Text(label),
+                                value: label,
+                              ))
+                          .toList(),
                     ),
                     TextFormField(
                       obscureText: true,
@@ -132,7 +128,7 @@ class _CadastroTarefaScreenState extends State<CadastroTarefaScreen> {
                         professorModel.senha = value;
                       },
                     ),
-                    FlatButton(
+/*                    FlatButton(
                         onPressed: () {
                           DatePicker.showDatePicker(context,
                               showTitleActions: true,
@@ -149,6 +145,7 @@ class _CadastroTarefaScreenState extends State<CadastroTarefaScreen> {
                           'show date time picker (Chinese)',
                           style: TextStyle(color: Colors.blue),
                         )),
+*/
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: RaisedButton(
