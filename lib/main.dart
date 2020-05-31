@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:school_portal_app/screens/cadastro_tarefas_screen.dart';
 import 'package:school_portal_app/screens/chamada_detalhes_screen.dart';
 import 'package:school_portal_app/screens/chamada_screen.dart';
 import 'package:school_portal_app/screens/home/home_screen.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
           '/tarefas-detalhes': (context) => TarefasDetalhesScreen(),
           '/chamada': (context) => ChamadaScreen(),
           '/chamada-detalhes': (context) => ChamadaDetalhesScreen(),
+          '/cadastro-tarefas': (context) => CadastroTarefasScreen(),
           '/cadastro-professor': (context) => CadastroProfessorScreen(),
           '/edicao-profesor': (context) => EdicaoProfessorScreen(),
         },

@@ -44,7 +44,7 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
                 ),
                 Expanded(
                   child: SizedBox(
-                    child: ChamadaList(turmaModel),
+                    child: chamadaList(turmaModel),
                   ),
                 ),
                 Row(
@@ -69,7 +69,7 @@ class _ChamadaDetalhesScreenState extends State<ChamadaDetalhesScreen> {
     );
   }
 
-  Widget ChamadaList(TurmaModel turmaModel) {
+  Widget chamadaList(TurmaModel turmaModel) {
     return FutureBuilder<List>(
       future: chamadaAlunoRepository.findChamadaTurma(turmaModel.nome),
       builder: (context, snapshot) {

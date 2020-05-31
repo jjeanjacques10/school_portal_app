@@ -15,10 +15,11 @@ class TarefasRepository {
     var result = await connection.query(
       "TarefasModel",
       columns: [
-        "nome",
-        "rm",
-        "foto",
-        "sala",
+        "titulo",
+        "tipo",
+        "turma",
+        "disciplina",
+        "data",
       ],
     );
     //Converte a lista de Maps para Lista de Cursos
