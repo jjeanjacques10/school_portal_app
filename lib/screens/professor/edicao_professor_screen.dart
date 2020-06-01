@@ -2,22 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:school_portal_app/models/professor_model.dart';
 import 'package:school_portal_app/repository/professor_repository.dart';
 
-class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key}) : super(key: key);
+class EdicaoProfessorScreen extends StatefulWidget {
+  EdicaoProfessorScreen({Key key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _EdicaoProfessorScreenState createState() => _EdicaoProfessorScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _EdicaoProfessorScreenState extends State<EdicaoProfessorScreen> {
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   ProfessorRepository professorRepository = ProfessorRepository();
-  ProfessorModel professorModel = ProfessorModel();
+  ProfessorModel professorModel;
 
   @override
   Widget build(BuildContext context) {
+    professorModel = ModalRoute.of(context).settings.arguments;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -33,6 +35,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 fontWeight: FontWeight.w500,
               )),
           centerTitle: true,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.pink,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.only(
@@ -49,20 +60,39 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Portal do Professor",
+                        "Cadastrar Professor",
                         style: TextStyle(
                           fontSize: 22,
-                          fontWeight: FontWeight.w800,
+                          fontWeight: FontWeight.w600,
                           color: Colors.pink,
                         ),
                       ),
                     ),
                     TextFormField(
                       decoration: new InputDecoration(
+                          icon: const Icon(Icons.people_outline),
+                          fillColor: Colors.white,
+                          hintText: 'Digite o seu Nome',
+                          labelText: "Nome"),
+                      initialValue: professorModel.nome.toString(),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Precisamos do seu nome para o cadastro';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        professorModel.nome = value;
+                      },
+                    ),
+                    TextFormField(
+                      decoration: new InputDecoration(
                           icon: const Icon(Icons.person_pin),
                           fillColor: Colors.white,
                           hintText: 'Digite o seu RM',
+                          enabled: false,
                           labelText: "RM"),
+                      initialValue: professorModel.rm.toString(),
                       validator: (value) {
                         if (value.isEmpty) {
                           return 'Digite o RM para logar';
@@ -81,9 +111,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         hintText: 'Digite sua senha',
                         labelText: 'Senha',
                       ),
+                      initialValue: professorModel.senha.toString(),
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Digite a senha para logar';
+                          return 'Digite a senha';
                         }
                         return null;
                       },
@@ -94,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: RaisedButton(
-                        child: Text("Entrar",
+                        child: Text("Cadastrar",
                             style: TextStyle(
                               color: Colors.white,
                             )),
@@ -103,43 +134,21 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (formKey.currentState.validate()) {
                             formKey.currentState.save();
 
-                            var resultLogin = professorRepository.login(
-                                professorModel.rm, professorModel.senha);
-
-                            resultLogin.then((professor) {
-                              if (professor == null) {
-                              } else {
-                                Navigator.pushNamed(
-                                  context,
-                                  '/menu',
-                                  arguments: professor,
-                                );
-                              }
-                            });
+                            professorRepository.update(professorModel);
+                            
+                            Navigator.pop(context, professorModel);
                           } else {
                             scaffoldKey.currentState.showSnackBar(
                               SnackBar(
                                 content: Text(
-                                  'Não foi possível faze o login.',
+                                  'Não foi cadastrar um novo professor',
                                 ),
                               ),
                             );
                           }
                         },
                       ),
-                    ),
-                    RaisedButton(
-                        child: Text("Cadastrar",
-                            style: TextStyle(
-                              color: Colors.white,
-                            )),
-                        color: Colors.pink,
-                        onPressed: () {
-                          Navigator.pushNamed(
-                            context,
-                            '/cadastro-professor',
-                          );
-                        })
+                    )
                   ],
                 ),
               ),

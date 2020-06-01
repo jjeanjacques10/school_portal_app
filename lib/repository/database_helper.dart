@@ -1,5 +1,9 @@
-import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:school_portal_app/models/chamada_aluno.dart';
+import 'package:school_portal_app/models/professor_model.dart';
+import 'package:school_portal_app/models/tarefas_model.dart';
+import 'package:school_portal_app/models/turma_model.dart';
+import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
   // Instancia do SQFLite Database
@@ -13,10 +17,8 @@ class DatabaseHelper {
     return _instance;
   }
 
-  // Construtor nomeado 
+  // Construtor nomeado
   DatabaseHelper._internal();
-
-  
 
   // Abre conexão com o banco
   Future<Database> get connection async {
@@ -32,7 +34,7 @@ class DatabaseHelper {
 
     var database = await openDatabase(
       dbPath,
-      version: 1,
+      version: 2,
       onCreate: _createTables,
     );
 
@@ -41,17 +43,199 @@ class DatabaseHelper {
 
   void _createTables(Database database, int version) async {
     // Criando a tabela de Cursos
+
+    await database.execute('''
+      CREATE TABLE TurmaModel(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          nome TEXT NULL,
+          disciplina TEXT NULL,
+          horario TEXT,
+          inicio TEXT,
+          termino TEXT
+        );
+      
+      ''');
+
     await database.execute(
       '''
-      CREATE TABLE CursoModel (
-        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+       CREATE TABLE  ProfessorModel(
+        rm TEXT PRIMARY KEY,
         nome TEXT,
-        nivel TEXT,
-        percentualConclusao REAL,
-        preco INTEGER,
-        conteudo TEXT
-      )
+        senha TEXT NOT NULL
+      );
       ''',
     );
+    await database.execute(
+      ''' 
+      CREATE TABLE AlunoModel(
+        rm TEXT PRIMARY KEY ,
+        nome TEXT,
+        foto TEXT,
+        idTurma INTEGER,
+        FOREIGN KEY(idTurma) REFERENCES turmaModel(id)
+      );
+      ''',
+    );
+
+    await database.execute(
+      '''
+     CREATE TABLE TarefasModel(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        titulo TEXT,
+        tipo TEXT,
+        turma TEXT,
+        disciplina TEXT,
+        data TEXT,
+        nota REAL DEFAULT 0
+      );
+      ''',
+    );
+
+    await database.execute(
+      '''
+      CREATE TABLE ChamadaAluno(
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        nome TEXT,
+        foto TEXT,
+        rmAluno TEXT,
+        presente INTEGER DEFAULT 0,
+        turma TEXT
+      );
+      ''',
+    );
+
+    await database.insert("ProfessorModel",
+        new ProfessorModel(rm: "123", nome: "Flavio", senha: "123").toMap());
+    await database.insert("ProfessorModel",
+        new ProfessorModel(rm: "Pedro", nome: "Pedro", senha: "123").toMap());
+
+    await database.insert(
+        "TurmaModel",
+        new TurmaModel(
+          id: 1,
+          nome: '2SIA',
+          disciplina: 'Flutter',
+          horario: 'Manhã',
+          inicio: '8h00',
+          termino: '9h40',
+        ).toMap());
+
+    await database.insert(
+        "TurmaModel",
+        new TurmaModel(
+          id: 2,
+          nome: '3SIB',
+          disciplina: 'Mobile',
+          horario: 'Manhã',
+          inicio: '10h00',
+          termino: '11h40',
+        ).toMap());
+
+    await database.insert(
+        "TurmaModel",
+        new TurmaModel(
+          id: 3,
+          nome: '3SIA',
+          disciplina: 'Web Services',
+          horario: 'Noite',
+          inicio: '19h00',
+          termino: '20h40',
+        ).toMap());
+
+    await database.insert(
+        "ChamadaAluno",
+        new ChamadaAluno(
+          id: 1,
+          nome: 'Vitor Rico',
+          foto:
+              'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+          rmAluno: 'RM80515',
+          presente: 1,
+          turma: '3SIA',
+        ).toMap());
+
+    await database.insert(
+        "ChamadaAluno",
+        new ChamadaAluno(
+          id: 2,
+          nome: 'Vinicius Mota',
+          foto:
+              'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+          rmAluno: 'RM81238',
+          presente: 1,
+          turma: '3SIB',
+        ).toMap());
+
+    await database.insert(
+        "ChamadaAluno",
+        new ChamadaAluno(
+          id: 3,
+          nome: 'Gabriel Petillo',
+          foto:
+              'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+          rmAluno: 'RM81238',
+          presente: 0,
+          turma: '3SIB',
+        ).toMap());
+
+    await database.insert(
+        "ChamadaAluno",
+        new ChamadaAluno(
+          id: 4,
+          nome: 'Jean Jacques',
+          foto:
+              'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+          rmAluno: 'RM81524',
+          presente: 0,
+          turma: '3SIB',
+        ).toMap());
+
+    await database.insert(
+        "ChamadaAluno",
+        new ChamadaAluno(
+          id: 5,
+          nome: 'Jean Jacques',
+          foto:
+              'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png',
+          rmAluno: 'RM81534',
+          presente: 0,
+          turma: '2SIA',
+        ).toMap());
+
+    await database.insert(
+        "TarefasModel",
+        new TarefasModel(
+          id: 1,
+          titulo: 'Prova Teste',
+          tipo: 'NAC',
+          turma: '3SIA',
+          disciplina: 'Flutter',
+          data: '11/02/2019',
+          nota: 0,
+        ).toMap());
+
+    await database.insert(
+        "TarefasModel",
+        new TarefasModel(
+                id: 2,
+                titulo: 'Prova Teste 2',
+                tipo: 'NAC',
+                turma: '3SIA',
+                disciplina: 'Flutter',
+                data: '11/02/2019',
+                nota: 10)
+            .toMap());
+
+    await database.insert(
+        "TarefasModel",
+        new TarefasModel(
+                id: 3,
+                titulo: 'Prova Teste 3',
+                tipo: 'NAC',
+                turma: '3SIB',
+                disciplina: 'Flutter',
+                data: '11/02/2019',
+                nota: 7)
+            .toMap());
   }
 }

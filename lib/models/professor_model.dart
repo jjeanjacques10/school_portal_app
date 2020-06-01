@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class ProfessorModel {
-  int rm;
+  String rm;
   String nome;
   String senha;
 
@@ -23,8 +23,8 @@ class ProfessorModel {
       );
 
   Map<String, dynamic> toMap() => {
-        "id": rm,
+        "rm": rm,
         "nome": nome,
-        "nivel": senha,
+        "senha": senha,
       };
 }
