@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:school_portal_app/components/choice_menu.dart';
 import 'package:school_portal_app/models/professor_model.dart';
-import 'package:school_portal_app/screens/chamada/chamada_detalhes_screen.dart';
 import 'package:school_portal_app/screens/chamada/chamada_screen.dart';
 import 'package:school_portal_app/screens/home/home_screen.dart';
-import 'package:school_portal_app/screens/login_screen.dart';
-import 'package:school_portal_app/screens/tarefas/tarefas_detalhes_screen.dart';
 import 'package:school_portal_app/screens/tarefas/tarefas_screen.dart';
-import 'professor/edicao_professor_screen.dart';
 
 class MenuScreen extends StatefulWidget {
   MenuScreen({Key key}) : super(key: key);

@@ -108,9 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             resultLogin.then((professor) {
                               if (professor == null) {
-                                
                               } else {
-                                
                                 Navigator.pushNamed(
                                   context,
                                   '/menu',
@@ -130,12 +128,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                     ),
-                    /*RaisedButton(onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        '/novo-professor',
-                      );
-                    })*/
+                    RaisedButton(
+                        child: Text("Cadastrar",
+                            style: TextStyle(
+                              color: Colors.white,
+                            )),
+                        color: Colors.pink,
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            '/cadastro-professor',
+                          );
+                        })
                   ],
                 ),
               ),
