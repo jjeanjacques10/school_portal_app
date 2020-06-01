@@ -17,15 +17,15 @@ This project was developed with the following technologies:
 
 ## :clipboard: Issues
 ### v0.1 
-- [ ] Prototipação
-- [ ] Estuturação da arquitetura
-- [ ] Modelo
-- [ ] Repository
-- [ ] Login (Screen)
-- [ ] HomeScreen (Screen)
-- [ ] Professor (Screen, Repository)
-- [ ] Chamada (Screen, Repository)
-- [ ] Correção de provas (Screen, Repository)
+- [x] Prototipação
+- [x] Estuturação da arquitetura
+- [x] Modelo
+- [x] Repository
+- [x] Login (Screen)
+- [x] HomeScreen (Screen)
+- [x] Professor (Screen, Repository)
+- [x] Chamada (Screen, Repository)
+- [x] Tarefas (Screen, Repository)
 
 <br>
 
