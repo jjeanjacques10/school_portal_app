@@ -3,14 +3,13 @@ import 'package:school_portal_app/components/turma_card.dart';
 import 'package:school_portal_app/models/turma_model.dart';
 import 'package:school_portal_app/repository/turma_repository.dart';
 
-class ChamadaScreen extends StatefulWidget {
-  ChamadaScreen({Key key}) : super(key: key);
+class ChamadaScreen extends StatelessWidget {
+  final BuildContext ctx;
 
-  @override
-  _ChamadaScreenState createState() => _ChamadaScreenState();
-}
+  ChamadaScreen({
+    this.ctx,
+  });
 
-class _ChamadaScreenState extends State<ChamadaScreen> {
   TurmaRepository turmaRepository = TurmaRepository();
 
   @override
@@ -23,15 +22,27 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
           child: Column(
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
-                child: Text(
-                  'Chamada',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Colors.pink,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500),
+                padding: const EdgeInsets.only(top: 30, bottom: 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(right: 10),
+                      child: Icon(
+                        Icons.assignment_ind,
+                        color: Colors.pink,
+                        size: 30,
+                      ),
+                    ),
+                    Text(
+                      'Chamada',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.pink,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
               ),
               Expanded(
@@ -69,12 +80,13 @@ class _ChamadaScreenState extends State<ChamadaScreen> {
   ListView buildListView(List<TurmaModel> turmas) {
     return ListView.builder(
       itemCount: turmas == null ? 0 : turmas.length,
-      itemBuilder: (BuildContext ctx, int index) {
+      itemBuilder: (BuildContext context, int index) {
         TurmaModel turma = turmas[index];
 
         return TurmaCard(
+          ctx: ctx,
           turmaModel: turma,
-          tipo: 'chamada',
+          route: '/chamada-detalhes',
         );
       },
     );

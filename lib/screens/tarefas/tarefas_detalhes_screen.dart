@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:school_portal_app/components/chamada_card.dart';
 import 'package:school_portal_app/components/tarefas_card.dart';
-import 'package:school_portal_app/models/chamada_aluno.dart';
 import 'package:school_portal_app/models/tarefas_model.dart';
 import 'package:school_portal_app/models/turma_model.dart';
-import 'package:school_portal_app/repository/chamada_aluno_repository.dart';
-import 'package:intl/intl.dart';
 import 'package:school_portal_app/repository/tarefas_repository.dart';
 
 class TarefasDetalhesScreen extends StatefulWidget {
@@ -28,59 +24,70 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-          resizeToAvoidBottomPadding: false,
-          body: Padding(
-            padding: const EdgeInsets.only(top: 0),
-            child: Column(
-              children: [
-                Padding(
+        resizeToAvoidBottomPadding: false,
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: Text(
+            'FIAPP',
+            style: TextStyle(color: Colors.pink),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.pink,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 30, bottom: 10),
+              child: Text(
+                'Tarefas',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    color: Colors.pink,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                bottom: 10,
+              ),
+              child: Container(
+                child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
-                  child: Text(
-                    'Tarefas',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        color: Colors.pink,
-                        fontSize: 30,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: Text(
                     '${turmaModel.disciplina} | ${turmaModel.nome} ',
                     textAlign: TextAlign.left,
                     style: TextStyle(
-                        color: Colors.grey[600],
+                        color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.w500),
                   ),
                 ),
-                Expanded(
-                  child: SizedBox(
-                    child: chamadaList(turmaModel),
+                decoration: BoxDecoration(
+                  color: Colors.grey[400],
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: RaisedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          color: Colors.grey,
-                          child: const Text('Voltar',
-                              style: TextStyle(
-                                  fontSize: 16, color: Colors.white))),
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
-          )),
+            Expanded(
+              child: SizedBox(
+                child: chamadaList(turmaModel),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -93,7 +100,12 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
             return buildListView(snapshot.data);
           } else {
             return Center(
-              child: Text("Nenhuma Tarefa cadastrada!"),
+              child: Text(
+                "Sem tarefas cadastradas.",
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
             );
           }
         } else {
@@ -117,10 +129,4 @@ class _TarefasDetalhesScreenState extends State<TarefasDetalhesScreen> {
       },
     );
   }
-}
-
-String getTodayDate() {
-  var now = new DateTime.now();
-  var formatter = new DateFormat('dd/MM/yyyy');
-  return formatter.format(now);
 }

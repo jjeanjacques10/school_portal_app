@@ -8,10 +8,9 @@ class HomeScreen extends StatelessWidget {
     this.professorModel,
   });
 
+
   @override
   Widget build(BuildContext context) {
-    //professorModel = ModalRoute.of(context).settings.arguments;
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -99,7 +98,8 @@ class HomeScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    onTap: () {},
+                    onTap: () {
+                    },
                   ),
                 ),
               ),

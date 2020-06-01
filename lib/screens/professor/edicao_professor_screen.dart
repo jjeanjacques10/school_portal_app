@@ -57,12 +57,15 @@ class _EdicaoProfessorScreenState extends State<EdicaoProfessorScreen> {
               child: Center(
                 child: Column(
                   children: <Widget>[
-                    Text(
-                      "Cadastrar novo Professor",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.pink,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Cadastrar Professor",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.pink,
+                        ),
                       ),
                     ),
                     TextFormField(

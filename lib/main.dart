@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           '/chamada-detalhes': (context) => ChamadaDetalhesScreen(),
           '/cadastro-tarefas': (context) => CadastroTarefasScreen(),
           '/cadastro-professor': (context) => CadastroProfessorScreen(),
-          '/edicao-profesor': (context) => EdicaoProfessorScreen(),
+          '/edicao-professor': (context) => EdicaoProfessorScreen(),
         },
       ),
     );

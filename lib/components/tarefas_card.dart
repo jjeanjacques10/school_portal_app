@@ -49,7 +49,7 @@ class _TarefasCardState extends State<TarefasCard> {
                   subtitle: Row(
                     children: <Widget>[
                       Expanded(
-                        flex: 3,
+                        flex: 1,
                         child: Padding(
                           padding: EdgeInsets.only(left: 0),
                           child: Text(
@@ -61,60 +61,63 @@ class _TarefasCardState extends State<TarefasCard> {
                           ),
                         ),
                       ),
-                      RaisedButton(
-                        child: Text("Gravar"),
-                        onPressed: () {
-                          if (formKey.currentState.validate()) {
-                            formKey.currentState.save();
-
-                            tarefasRepository.update(widget.tarefa);
-                          } else {
-                            scaffoldKey.currentState.showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Não foi possível gravar o curso.',
-                                ),
-                              ),
-                            );
-                          }
-                        },
+                      Container(
+                        width: 50.0,
+                        child: TextFormField(
+                          initialValue: widget.tarefa.nota.toString(),
+                          decoration: InputDecoration(
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            border: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                          ),
+                          keyboardType:
+                              TextInputType.numberWithOptions(decimal: true),
+                          textAlign: TextAlign.center,
+                          cursorColor: Colors.white,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            height: 1.0,
+                            color: Colors.white,
+                          ),
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Digite a nota';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            widget.tarefa.nota = double.parse(value);
+                          },
+                        ),
                       ),
                     ],
                   ),
-                  trailing: Container(
-                    width: 50.0,
-                    child: TextFormField(
-                      initialValue: widget.tarefa.nota.toString(),
-                      decoration: InputDecoration(
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                      ),
-                      keyboardType:
-                          TextInputType.numberWithOptions(decimal: true),
-                      textAlign: TextAlign.center,
-                      cursorColor: Colors.white,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        height: 1.0,
-                        color: Colors.white,
-                      ),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'Digite a nota';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        widget.tarefa.nota = double.parse(value);
-                      },
+                  trailing: 
+                  RaisedButton(
+                    child: Text(
+                      "Gravar",
+                      style: TextStyle(fontSize: 12),
                     ),
+                    onPressed: () {
+                      if (formKey.currentState.validate()) {
+                        formKey.currentState.save();
+                        tarefasRepository.update(widget.tarefa);
+                      } else {
+                        scaffoldKey.currentState.showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Não foi possível gravar o curso.',
+                            ),
+                          ),
+                        );
+                      }
+                    },
                   ),
                 ),
               ),

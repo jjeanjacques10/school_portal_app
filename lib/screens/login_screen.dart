@@ -33,15 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 fontWeight: FontWeight.w500,
               )),
           centerTitle: true,
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.pink,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
         ),
         body: Padding(
           padding: const EdgeInsets.only(
@@ -55,12 +46,15 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Center(
                 child: Column(
                   children: <Widget>[
-                    Text(
-                      "Portal do Professor",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.pink,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Portal do Professor",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.pink,
+                        ),
                       ),
                     ),
                     TextFormField(
@@ -114,9 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             resultLogin.then((professor) {
                               if (professor == null) {
-                                
                               } else {
-                                
                                 Navigator.pushNamed(
                                   context,
                                   '/menu',
@@ -136,12 +128,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                     ),
-                    RaisedButton(onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        '/novo-professor',
-                      );
-                    })
+                    RaisedButton(
+                        child: Text("Cadastrar",
+                            style: TextStyle(
+                              color: Colors.white,
+                            )),
+                        color: Colors.pink,
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            '/cadastro-professor',
+                          );
+                        })
                   ],
                 ),
               ),

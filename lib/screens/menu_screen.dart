@@ -3,14 +3,7 @@ import 'package:school_portal_app/components/choice_menu.dart';
 import 'package:school_portal_app/models/professor_model.dart';
 import 'package:school_portal_app/screens/chamada/chamada_screen.dart';
 import 'package:school_portal_app/screens/home/home_screen.dart';
-import 'package:school_portal_app/screens/login_screen.dart';
-import 'package:school_portal_app/screens/tarefas/tarefas_detalhes_screen.dart';
 import 'package:school_portal_app/screens/tarefas/tarefas_screen.dart';
-
-import 'chamada/chamada_detalhes_screen.dart';
-import 'professor/cadastro_professor_screen.dart';
-import 'professor/edicao_professor_screen.dart';
-import 'tarefas/cadastro_tarefas_screen.dart';
 
 class MenuScreen extends StatefulWidget {
   MenuScreen({Key key}) : super(key: key);
@@ -49,8 +42,12 @@ class _MenuScreenState extends State<MenuScreen> {
       HomeScreen(
         professorModel: professorModel,
       ),
-      ChamadaScreen(),
-      TarefasScreen()
+      ChamadaScreen(
+        ctx: context,
+      ),
+      TarefasScreen(
+        ctx: context,
+      )
     ];
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -66,7 +63,7 @@ class _MenuScreenState extends State<MenuScreen> {
           actions: [
             PopupMenuButton<ChoiceMenu>(
               onSelected: _select,
-              itemBuilder: (BuildContext context) {
+              itemBuilder: (BuildContext ctx) {
                 return choices.map((ChoiceMenu choice) {
                   return PopupMenuItem<ChoiceMenu>(
                     enabled: choice.enabled,
@@ -75,7 +72,15 @@ class _MenuScreenState extends State<MenuScreen> {
                       children: [
                         GestureDetector(
                             onTap: () {
-                              _onSelectChoice(context, choice.title);
+                              if (choice.route == '/edicao-professor') {
+                                Navigator.pushNamed(
+                                  context,
+                                  choice.route,
+                                  arguments: professorModel,
+                                );
+                              } else {
+                                Navigator.pushNamed(context, choice.route);
+                              }
                             },
                             child: Row(
                               children: [
@@ -131,41 +136,18 @@ class _MenuScreenState extends State<MenuScreen> {
       ),
     );
   }
-
-  void _onSelectChoice(BuildContext context, String value) {
-    switch (value) {
-      case "Sair":
-        Navigator.push(
-          context,
-          new MaterialPageRoute(
-            builder: (context) => LoginScreen(),
-          ),
-        );
-        break;
-      case "Editar Perfil":
-        Navigator.push(
-          context,
-          new MaterialPageRoute(
-            builder: (context) => EdicaoProfessorScreen(),
-            settings: RouteSettings(
-              arguments: professorModel,
-            ),
-          ),
-        );
-
-        break;
-      default:
-        print("Erro");
-        break;
-    }
-  }
 }
 
 const List<ChoiceMenu> choices = const <ChoiceMenu>[
   const ChoiceMenu(title: 'Notificações', icon: Icons.mail, enabled: false),
-  const ChoiceMenu(title: 'Editar Perfil', icon: Icons.edit, enabled: true),
+  const ChoiceMenu(
+      title: 'Editar Perfil',
+      icon: Icons.edit,
+      enabled: true,
+      route: '/edicao-professor'),
   const ChoiceMenu(
       title: 'Configurações', icon: Icons.settings, enabled: false),
   const ChoiceMenu(title: 'Reportar Erro', icon: Icons.textsms, enabled: false),
-  const ChoiceMenu(title: 'Sair', icon: Icons.exit_to_app, enabled: true),
+  const ChoiceMenu(
+      title: 'Sair', icon: Icons.exit_to_app, enabled: true, route: '/login'),
 ];
